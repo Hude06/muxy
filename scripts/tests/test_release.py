@@ -49,7 +49,7 @@ class BetaVersionTests(unittest.TestCase):
     def test_each_channel_installs_as_its_own_app(self):
         keys = ("CFBundleName", "CFBundleIdentifier", "CFBundleShortVersionString", "CFBundleVersion")
         info = release.bundle_info("2.1.0-beta.1234", "1234")
-        self.assertEqual([info[key] for key in keys], ["Muxy Beta", "com.muxy-beta.app", "2.1.0", "1234"])
+        self.assertEqual([info[key] for key in keys], ["Pane Beta", "dev.hude06.pane-beta", "2.1.0", "1234"])
         self.assertNotIn("SUPublicEDKey", info)
         self.assertIn("NSLocalNetworkUsageDescription", info)
         self.assertEqual(info["NSAppTransportSecurity"], {"NSAllowsArbitraryLoadsInWebContent": True})
@@ -57,7 +57,7 @@ class BetaVersionTests(unittest.TestCase):
         self.assertEqual(folders["LSItemContentTypes"], ["public.folder"])
         self.assertEqual(folders["LSHandlerRank"], "Alternate")
         info = release.bundle_info("2.1.0", "1234")
-        self.assertEqual([info[key] for key in keys], ["Muxy", "com.muxy.app", "2.1.0", "1234"])
+        self.assertEqual([info[key] for key in keys], ["Pane", "dev.hude06.pane", "2.1.0", "1234"])
         self.assertEqual(info["SUPublicEDKey"], "X5YPWvD11Qthw+41DPZQRK8aOYBlPjjfeWW2k3510cY=")
         for version, build in (("2.1.0-beta.1234", "1235"), ("2.1.0", "0"), ("2.1.0", "x")):
             with self.subTest(version=version, build=build), self.assertRaises(ValueError):

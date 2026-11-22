@@ -915,8 +915,8 @@ static COMMANDS: &[CommandDef] = &[
     )
     .keywords("Manage Extensions settings installed marketplace")
     .run(AppModel::show_extensions_settings),
-    row::<ShowTip>(ShortcutId::ShowTip, Label::Key(tr_key!("Show Muxy Tip")))
-        .keywords("Show Muxy Tip Tips")
+    row::<ShowTip>(ShortcutId::ShowTip, Label::Key(tr_key!("Show Pane Tip")))
+        .keywords("Show Pane Tip Tips")
         .visible(tips_shown)
         .run(|model, _, cx| {
             if tips_shown(model) {

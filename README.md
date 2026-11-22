@@ -1,57 +1,73 @@
 <p align="center">
-  <img src="packaging/macos/AppIcon.png" alt="Muxy" width="128" height="128">
+  <img src="packaging/macos/AppIcon.png" alt="Pane" width="128" height="128">
 </p>
 
-<h1 align="center">Muxy</h1>
+<h1 align="center">Pane</h1>
 
-<p align="center">Lightweight and Memory efficient terminal multiplexer built with Rust, GPUI and libghostty.</p>
-<p align="center"><a href="#install">Mac</a> | <a href="docs/user-guide/getting-started.md#linux-desktop-app">Linux</a> | <a href="https://apps.apple.com/de/app/muxy/id6762464046?l=en-GB">iOS</a> | <a href="https://play.google.com/store/apps/details?id=com.muxy.app">Android</a> | <a href="https://discord.gg/4eMXAmJQ2n">Discord</a></p>
+<p align="center">A frosted-glass terminal multiplexer for macOS. A fork of <a href="https://github.com/muxy-app/muxy">Muxy</a>.</p>
 
-## Screenshots
+## What Pane changes
 
-<img height="1592" alt="image" src="https://github.com/user-attachments/assets/eca8fb92-b2f4-4a53-a25f-6f75316222af" />
+Pane keeps Muxy's server, protocol, CLI and terminal engine. It changes the
+desktop app:
 
-## Top level features
+- **Window glass.** The whole window is a frosted pane over the desktop. Turn
+  it on or off and set its strength in **Settings → Appearance → Window glass**.
+  It turns itself off under Reduce Transparency or Increase Contrast.
+- **Overview.** The first tab of Home shows your day: a headline of tokens,
+  commits and projects; a year of commits and of agent activity as heatmaps;
+  streak, lines changed, sessions and time agents spent working; the models you
+  used; and the agent sessions you can pick up again. Switch between Today,
+  Week and Month. It reads Claude Code and Codex logs and the Git history of
+  your projects on this Mac, and nothing leaves the computer.
+- **Its own app.** Pane has its own name, icon, bundle identifier
+  (`dev.hude06.pane`) and data folder (`~/Library/Application Support/Pane`,
+  `Pane Dev` for local builds), so it runs beside an installed Muxy. Terminals
+  in Pane get `MUXY_DIR`, so the `muxy` command in them reaches Pane's server.
+- **No usage ping.** Muxy's daily install ping to `muxy.app` is removed.
 
-- Background sessions
-- Remote sessions
-- Split panes
-- Git worktrees
-- Extensions
-- Mobile companion apps (iOS & Android)
-- AI coding agent integrations
-- 490+ themes
-- TUI
+Pane still uses Muxy's extension store and phone push relay at `muxy.app`. The
+crates, the `muxy` command and messages about remote servers keep the Muxy
+name, so upstream changes merge cleanly.
 
-## Install
+## Build
 
-The desktop app runs on macOS 14 or newer, on Apple Silicon or Intel.
-
-```bash
-brew install --cask muxy-app/tap/muxy
-```
-
-Or download the DMG for your Mac from the [latest release](https://github.com/muxy-app/muxy/releases/latest).
-
-On **Ubuntu 24.04**, use the [quick installer](docs/user-guide/getting-started.md#quick-installer-with-in-app-updates)
-for the latest stable release and in-app updates, or download a **`.deb`** or
-**AppImage** from the [latest release](https://github.com/muxy-app/muxy/releases/latest).
-The [Linux section](docs/user-guide/getting-started.md#linux-desktop-app) covers all
-three formats. See [Beta builds](docs/user-guide/getting-started.md#beta) for beta
-installs. Linux support is experimental, targeting x86_64 and ARM64.
-
-The `muxy` CLI and server also run on their own, on macOS and Linux:
+Requirements are in [`mise.toml`](mise.toml) and
+[`rust-toolchain.toml`](rust-toolchain.toml): Rust 1.92 and Zig.
 
 ```bash
-brew install muxy-app/tap/muxy-cli
+cargo run -p muxy-app          # run from source with the Pane Dev profile
+./scripts/bundle-pane.sh       # build dist/Pane.app, signed for this Mac only
+cargo xcheck && cargo xtest    # Clippy and the workspace tests, as CI runs them
 ```
 
-See [Getting started](docs/user-guide/getting-started.md) for the install script, upgrading from 1.x, and beta builds.
+Move `dist/Pane.app` to `/Applications` to keep it. A local build updates only
+when you rebuild it.
 
-## Documentation
+## Keep up with Muxy
 
-See [docs](https://muxy.app/docs).
+```bash
+git fetch upstream
+git switch main && git merge --ff-only upstream/main && git push origin main
+git switch glass-frontend && git merge main
+```
+
+Conflicts are most likely in `README.md`, `PRIVACY.md`, the identity in
+`crates/muxy-core/src/release.rs` and `dirs.rs`, and the app icon. Keep Pane's
+side of those.
+
+## Where the code is
+
+| Part | Files |
+| --- | --- |
+| Window glass | `crates/muxy-ui/src/vibrancy.rs`, `crates/muxy-app/src/views/sidebar/vibrancy.rs`, `crates/muxy-app/src/model/preferences.rs` |
+| Overview data | `crates/muxy-app-core/src/insights.rs`, `insights/agents.rs`, `insights/git.rs` |
+| Overview screen | `crates/muxy-app/src/model/insights.rs`, `crates/muxy-app/src/views/overview.rs` |
+
+Muxy's own guides are in [`docs/`](docs/) and at [muxy.app/docs](https://muxy.app/docs).
 
 ## License
 
-[Apache 2.0](LICENSE). Code contributed before the switch from MIT remains under the MIT License; see [NOTICE](NOTICE).
+[Apache 2.0](LICENSE), like Muxy. Code contributed to Muxy before its switch
+from MIT remains under the MIT License; see [NOTICE](NOTICE). Pane is not made
+or endorsed by the Muxy team.

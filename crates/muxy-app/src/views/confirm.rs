@@ -170,7 +170,7 @@ pub(crate) async fn prompt_reset_terminal(
     server_prompt(parent, &title, &tr!("Reset"), &message, cx).await
 }
 
-pub(crate) const BACKGROUND_TITLE: &str = tr_key!("Allow Muxy to Run in the Background?");
+pub(crate) const BACKGROUND_TITLE: &str = tr_key!("Allow Pane to Run in the Background?");
 pub(crate) const OPEN_LOGIN_ITEMS: &str = tr_key!("Open Login Items");
 
 pub(crate) async fn prompt_background_activity(
@@ -235,7 +235,7 @@ pub(crate) async fn prompt_update(
         ]
     };
     let labels = labels.each_ref().map(gpui::SharedString::as_str);
-    let answer = choose(parent, &tr!("Muxy Update"), &message, &labels, cx)
+    let answer = choose(parent, &tr!("Pane Update"), &message, &labels, cx)
         .await
         .map_err(|error| error.to_string())?;
     let choice = match (scheduled, answer) {
@@ -274,7 +274,7 @@ async fn install_prompt(
     cx: &mut AsyncApp,
 ) -> Result<Option<bool>, String> {
     let question = Question::Choose {
-        title: &tr!("Muxy Update"),
+        title: &tr!("Pane Update"),
         message,
         confirm: &muxy_ui::l10n::translate(INSTALL),
         decline: &tr!("Not Now"),

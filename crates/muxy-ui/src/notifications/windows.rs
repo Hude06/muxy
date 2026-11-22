@@ -275,7 +275,7 @@ impl Worker {
         match self.notifier.Setting() {
             Ok(NotificationSetting::Enabled) | Err(_) => Capability::Supported,
             Ok(_) => Capability::Unavailable(
-                tr!("Notifications are turned off for Muxy in Windows Settings.").to_string(),
+                tr!("Notifications are turned off for Pane in Windows Settings.").to_string(),
             ),
         }
     }

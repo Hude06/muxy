@@ -65,7 +65,7 @@ fn render(model: &AppModel, window: &Window, cx: &mut Context<AppModel>) -> AnyE
         .child(
             popover::header(theme, m)
                 .justify_between()
-                .child(tr!("Muxy updates"))
+                .child(tr!("Pane updates"))
                 .child(controls::button(
                     Style { theme, metrics: &m },
                     "close-updates",

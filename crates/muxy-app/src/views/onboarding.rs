@@ -101,7 +101,7 @@ fn render(model: &AppModel, window: &Window, cx: &mut Context<AppModel>) -> AnyE
         m,
         viewport,
         "onboarding",
-        tr!("Welcome to Muxy"),
+        tr!("Welcome to Pane"),
         layout.card.width,
     )
     .debug_selector(|| "onboarding".into())

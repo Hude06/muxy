@@ -14,8 +14,8 @@ use std::time::Instant;
 
 use gpui::{
     AnyElement, BackgroundExecutor, Context, Div, InteractiveElement, IntoElement, ParentElement,
-    PathBuilder, Render, Role, StatefulInteractiveElement as _, Styled, WeakEntity, Window, canvas,
-    div, linear_color_stop, linear_gradient, point,
+    Render, Role, StatefulInteractiveElement as _, Styled, WeakEntity, Window, div,
+    linear_color_stop, linear_gradient, point,
 };
 use muxy_core::shortcuts::ShortcutId;
 use muxy_ui::tr;
@@ -159,7 +159,7 @@ fn still_time(step: Step) -> f32 {
 
 fn description(step: Step) -> gpui::SharedString {
     match step {
-        Step::Welcome => tr!("Muxy's logo above terminals running side by side."),
+        Step::Welcome => tr!("Pane's logo above terminals running side by side."),
         Step::Server => {
             tr!(
                 "The desktop app, terminal UI, command line, and phone all connected to one server."
@@ -176,64 +176,38 @@ fn description(step: Step) -> gpui::SharedString {
 }
 
 fn logo(frame: &Frame, x: f32, y: f32, side: f32, reveals: [f32; 2]) -> AnyElement {
-    const LEFT: [(f32, f32); 6] = [
-        (220.44, 186.07),
-        (574.68, 512.0),
-        (220.44, 837.93),
-        (220.44, 696.22),
-        (418.82, 512.0),
-        (220.44, 327.78),
+    let panes = [
+        (0.08, 0.1, CYAN, INDIGO, 1.0, reveals[0]),
+        (0.32, 0.3, VIOLET, PINK, 0.72, reveals[1]),
     ];
-    const RIGHT: [(f32, f32); 6] = [
-        (449.32, 186.07),
-        (803.56, 512.0),
-        (449.32, 837.93),
-        (449.32, 696.22),
-        (647.69, 512.0),
-        (449.32, 327.78),
-    ];
-    let m = frame.m;
-    let shapes = [
-        (LEFT, 135.0, CYAN, INDIGO, reveals[0]),
-        (RIGHT, 45.0, PINK, VIOLET, reveals[1]),
-    ];
-    canvas(
-        |_, _, _| {},
-        move |bounds, (), window, _| {
-            for (shape, angle, from, to, reveal) in shapes {
-                if reveal <= 0.0 {
-                    continue;
-                }
-                let shift = (1.0 - reveal) * -side * 0.22;
-                let at = |(across, down): (f32, f32)| {
-                    bounds.origin
-                        + point(
-                            m.scaled(across / 1024.0 * side + shift),
-                            m.scaled(down / 1024.0 * side),
-                        )
-                };
-                let mut builder = PathBuilder::fill();
-                builder.move_to(at(shape[0]));
-                for corner in &shape[1..] {
-                    builder.line_to(at(*corner));
-                }
-                builder.close();
-                if let Ok(path) = builder.build() {
-                    let fill = linear_gradient(
-                        angle,
-                        linear_color_stop(gpui::rgb(from), 0.0),
-                        linear_color_stop(gpui::rgb(to), 1.0),
-                    );
-                    window.paint_path(path, fill.opacity(reveal));
-                }
-            }
-        },
-    )
-    .absolute()
-    .left(frame.px(x))
-    .top(frame.px(y))
-    .size(frame.px(side))
-    .into_any_element()
+    let mut mark = div()
+        .absolute()
+        .left(frame.px(x))
+        .top(frame.px(y))
+        .size(frame.px(side));
+    for (left, top, from, to, strength, reveal) in panes {
+        if reveal <= 0.0 {
+            continue;
+        }
+        let shift = (1.0 - reveal) * -side * 0.22;
+        mark = mark.child(
+            div()
+                .absolute()
+                .left(frame.px(left * side + shift))
+                .top(frame.px(top * side))
+                .size(frame.px(side * 0.6))
+                .rounded(frame.px(side * 0.09))
+                .border_1()
+                .border_color(gpui::white().opacity(0.28))
+                .bg(linear_gradient(
+                    135.0,
+                    linear_color_stop(gpui::rgb(from), 0.0),
+                    linear_color_stop(gpui::rgb(to), 1.0),
+                ))
+                .opacity(strength * reveal),
+        );
+    }
+    mark.into_any_element()
 }
 
 pub(crate) fn key_caps(id: ShortcutId, model: &AppModel) -> Vec<String> {

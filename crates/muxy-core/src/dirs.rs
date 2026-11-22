@@ -76,12 +76,12 @@ fn directory_name(version: &str, debug: bool, platform: Platform) -> &'static st
         .filter(|_| !debug)
         .map(Version::channel);
     match (channel, platform == Platform::Linux) {
-        (None, false) => "Muxy Dev",
-        (None, true) => "muxy-dev",
-        (Some(Channel::Beta), false) => "Muxy Beta",
-        (Some(Channel::Beta), true) => "muxy-beta",
-        (Some(Channel::Stable), false) => "Muxy 2",
-        (Some(Channel::Stable), true) => "muxy",
+        (None, false) => "Pane Dev",
+        (None, true) => "pane-dev",
+        (Some(Channel::Beta), false) => "Pane Beta",
+        (Some(Channel::Beta), true) => "pane-beta",
+        (Some(Channel::Stable), false) => "Pane",
+        (Some(Channel::Stable), true) => "pane",
     }
 }
 
@@ -186,12 +186,12 @@ mod tests {
         let local_app_data = root().join("AppData").join("Local");
         for platform in PLATFORMS {
             for (version, debug, desktop_name, linux_name) in [
-                ("2.0.0-beta-0", true, "Muxy Dev", "muxy-dev"),
-                ("2.0.0-beta-0", false, "Muxy Dev", "muxy-dev"),
-                ("2.0.0-beta.1001", true, "Muxy Dev", "muxy-dev"),
-                ("2.0.0-beta.1001", false, "Muxy Beta", "muxy-beta"),
-                ("2.0.0", true, "Muxy Dev", "muxy-dev"),
-                ("2.0.0", false, "Muxy 2", "muxy"),
+                ("2.0.0-beta-0", true, "Pane Dev", "pane-dev"),
+                ("2.0.0-beta-0", false, "Pane Dev", "pane-dev"),
+                ("2.0.0-beta.1001", true, "Pane Dev", "pane-dev"),
+                ("2.0.0-beta.1001", false, "Pane Beta", "pane-beta"),
+                ("2.0.0", true, "Pane Dev", "pane-dev"),
+                ("2.0.0", false, "Pane", "pane"),
             ] {
                 let expected = match platform {
                     Platform::MacOs => root()

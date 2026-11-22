@@ -271,7 +271,7 @@ impl AppModel {
         cx: &mut Context<Self>,
     ) -> Result<ServerId, String> {
         if self.quitting != Quitting::Idle {
-            return Err(tr!("Muxy is quitting").to_string());
+            return Err(tr!("Pane is quitting").to_string());
         }
         self.capabilities.check(Feature::SshRemotes)?;
         if id.is_some_and(|id| self.settings.server(id).is_none()) {
@@ -549,7 +549,7 @@ impl AppModel {
         cx: &mut Context<Self>,
     ) -> Result<(), String> {
         if self.quitting != Quitting::Idle {
-            return Err(tr!("Muxy is quitting").to_string());
+            return Err(tr!("Pane is quitting").to_string());
         }
         let taken = self.take_pairings(servers)?;
         let path = self.path.with_file_name("settings.toml");
@@ -584,7 +584,7 @@ impl AppModel {
         cx: &mut Context<Self>,
     ) -> Result<(), String> {
         if self.quitting != Quitting::Idle {
-            return Err(tr!("Muxy is quitting").to_string());
+            return Err(tr!("Pane is quitting").to_string());
         }
         let group = group.and_then(group_name);
         let listed = &self.settings.servers;
@@ -612,7 +612,7 @@ impl AppModel {
         cx: &mut Context<Self>,
     ) -> Result<(), String> {
         if self.quitting != Quitting::Idle {
-            return Err(tr!("Muxy is quitting").to_string());
+            return Err(tr!("Pane is quitting").to_string());
         }
         let group = group.and_then(group_name);
         let path = self.path.with_file_name("settings.toml");

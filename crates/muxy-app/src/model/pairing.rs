@@ -195,7 +195,7 @@ impl AppModel {
         cx: &mut Context<Self>,
     ) -> Result<ServerId, String> {
         if self.quitting != Quitting::Idle {
-            return Err(tr!("Muxy is quitting").to_string());
+            return Err(tr!("Pane is quitting").to_string());
         }
         self.check_pairing(id, form, &invite.fingerprint)?;
         let endpoint = PairedServer {

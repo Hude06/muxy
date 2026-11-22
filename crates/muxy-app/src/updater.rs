@@ -27,15 +27,15 @@ pub(crate) use macos::{CAPABILITY, Installation, PreparedUpdate};
 
 pub(crate) type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
 
-pub(crate) const RELEASES: &str = "https://github.com/muxy-app/muxy/releases/download";
+pub(crate) const RELEASES: &str = "https://github.com/Hude06/muxy/releases/download";
 #[cfg(any(target_os = "macos", target_os = "linux", test))]
 const MAX_DOWNLOAD: u64 = 2 * 1024 * 1024 * 1024;
 
 #[cfg(any(target_os = "macos", target_os = "linux"))]
 fn feed(channel: Channel) -> &'static str {
     match channel {
-        Channel::Beta => "https://github.com/muxy-app/muxy/releases/download/beta-2.x/update.json",
-        Channel::Stable => "https://github.com/muxy-app/muxy/releases/latest/download/update.json",
+        Channel::Beta => "https://github.com/Hude06/muxy/releases/download/beta-2.x/update.json",
+        Channel::Stable => "https://github.com/Hude06/muxy/releases/latest/download/update.json",
     }
 }
 

@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BETA_PATTERN = re.compile(r"([0-9]+\.[0-9]+\.[0-9]+)-beta\.([1-9][0-9]*)")
 STABLE_PATTERN = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+")
-APPS = {"beta": ("Muxy Beta", "com.muxy-beta.app"), "stable": ("Muxy", "com.muxy.app")}
+APPS = {"beta": ("Pane Beta", "dev.hude06.pane-beta"), "stable": ("Pane", "dev.hude06.pane")}
 SPARKLE_PUBLIC_KEY = "X5YPWvD11Qthw+41DPZQRK8aOYBlPjjfeWW2k3510cY="
 
 

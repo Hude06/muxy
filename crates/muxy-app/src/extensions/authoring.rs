@@ -118,7 +118,7 @@ impl AgentTask {
                      Start by asking me what to change.",
                     muxy_app_core::settings::agent::skill_file(profile).display()
                 ),
-                title: tr!("Muxy Settings").to_string(),
+                title: tr!("Pane Settings").to_string(),
             },
         }
     }

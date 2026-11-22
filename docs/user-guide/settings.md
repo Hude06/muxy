@@ -12,7 +12,7 @@ On macOS, choose **About Muxy** (or **About Muxy Beta**) from the app menu to op
 
 | Section | What's in it |
 | --- | --- |
-| General | Closing behavior, file types, defaults, and opener rules, window size, worktree locations, the anonymous daily ping |
+| General | Closing behavior, file types, defaults, and opener rules, window size, worktree locations |
 | Quick Terminal | Global shortcut, pinning, size, transparency |
 | Composer | Clearing, image submission, font |
 | Appearance | Language, light and dark themes, interface size, sidebar, status bar, rail, pane headers, the Open in App button, tips |
@@ -120,17 +120,10 @@ A value that would stop the app from starting is refused, and the file stays
 as it was. Remote servers stay in **Settings → Devices**, and server settings use
 `muxy settings`. See [Muxy CLI](../features/muxy-cli.md#app-settings).
 
-## Anonymous daily ping
+## Privacy
 
-Installed releases of the desktop app send one ping a day to `muxy.app`, so
-we can count active installs per version. It contains only the app version,
-the operating system, and the processor type, such as
-`{"version": "2.4.0", "os": "macos", "arch": "aarch64"}`. Nothing identifies
-you or your computer, and nothing else about how you use Muxy is sent.
-
-Turn it off in **Settings → General → Send an anonymous daily ping**, with
-`muxy config set privacy.usage_ping false`, or by starting Muxy with
-`DO_NOT_TRACK=1` set. The server, the CLI, and the phone apps never send it.
+Pane sends no usage data. The `privacy.usage_ping` setting is kept so settings
+files from Muxy still load, but nothing reads it.
 
 ## Ask an agent
 

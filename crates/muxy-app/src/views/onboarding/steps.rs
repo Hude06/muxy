@@ -172,7 +172,7 @@ fn action(
 fn welcome(model: &AppModel) -> Div {
     column(model)
         .child(intro(
-            tr!("Welcome to Muxy"),
+            tr!("Welcome to Pane"),
             tr!(
                 "Terminals that keep running, organized around your projects. This short tour shows you around and sets up the essentials."
             ),

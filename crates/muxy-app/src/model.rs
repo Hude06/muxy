@@ -49,7 +49,6 @@ mod tabs;
 pub(crate) mod tips;
 mod updates;
 pub(crate) use updates::UpdateAction;
-mod usage_ping;
 mod webviews;
 mod window_accessibility;
 mod workspaces;
@@ -751,7 +750,6 @@ impl AppModel {
         }
         Self::start_diagnostics(cx);
         model.start_update_checks(cx);
-        model.start_usage_ping(cx);
         model.start_tips(window, cx);
         model.sync_ssh_proxy(cx);
         model.start_servers();

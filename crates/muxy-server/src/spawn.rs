@@ -114,6 +114,11 @@ fn environment(
     env.retain(|(name, _)| {
         !same_name(name, "MUXY_SERVER_ID") && !same_name(name, "MUXY_SESSION_ID")
     });
+    if !env.iter().any(|(name, _)| same_name(name, "MUXY_DIR"))
+        && let Ok(directory) = muxy_core::dirs::muxy_dir()
+    {
+        env.push(("MUXY_DIR".into(), directory.into_os_string()));
+    }
     env.push(("MUXY_SERVER_ID".into(), identity.0.to_string().into()));
     env.push((
         "MUXY_SESSION_ID".into(),
@@ -292,6 +297,17 @@ mod tests {
         assert_eq!(last(&env, "LC_ALL"), Some(&OsString::from("C")));
         assert_eq!(last(&env, "MUXY_SESSION_ID"), Some(&OsString::from("7")));
         assert_eq!(last(&env, "TERM"), Some(&OsString::from("xterm-256color")));
+    }
+
+    #[test]
+    fn terminals_reach_this_server_and_not_another_installed_copy() {
+        let session = muxy_protocol::SessionId::new(7).expect("non-zero");
+        let env = environment(
+            (muxy_protocol::ServerIdentity::from_u128(1), session),
+            &BTreeMap::new(),
+        );
+        let expected = muxy_core::dirs::muxy_dir().expect("data directory");
+        assert_eq!(last(&env, "MUXY_DIR"), Some(&expected.into_os_string()));
     }
 
     fn pairs(values: &[(&str, &str)]) -> Vec<(OsString, OsString)> {

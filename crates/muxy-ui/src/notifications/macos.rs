@@ -61,7 +61,7 @@ impl Permission {
     fn capability(denied: bool) -> Capability {
         if denied {
             Capability::Unavailable(
-                crate::tr!("Notifications are turned off for Muxy in System Settings.").to_string(),
+                crate::tr!("Notifications are turned off for Pane in System Settings.").to_string(),
             )
         } else {
             Capability::Supported
