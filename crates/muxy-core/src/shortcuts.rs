@@ -240,6 +240,7 @@ pub enum ShortcutId {
     ShowFloatingTerminalInItsProject,
     CheckForUpdates,
     ShowWelcomeTour,
+    ShowOverview,
     CreateExtension,
     ManageExtensions,
     ShowTip,
@@ -1545,6 +1546,12 @@ pub const ALL: &[Shortcut] = &[
     },
     Shortcut {
         id: "show_welcome_tour",
+        keys: &[],
+        contexts: &[Some("WorkspaceTabs")],
+        key_contexts: &[],
+    },
+    Shortcut {
+        id: "show_overview",
         keys: &[],
         contexts: &[Some("WorkspaceTabs")],
         key_contexts: &[],

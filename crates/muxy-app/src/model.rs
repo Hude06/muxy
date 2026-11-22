@@ -20,6 +20,7 @@ pub(crate) mod floating;
 pub(crate) mod focus;
 pub(crate) mod git;
 mod insert_path;
+pub(crate) mod insights;
 mod language;
 mod links;
 pub(crate) mod onboarding;
@@ -194,6 +195,7 @@ pub(crate) struct AppModel {
     #[cfg(not(target_os = "macos"))]
     pub(crate) sidebar_available_width: gpui::Pixels,
     pub(crate) agent_sessions: agent_sessions::AgentSessions,
+    pub(crate) insights: insights::Insights,
     pub(crate) agents_panel: agents_panel::AgentsPanel,
     pub(crate) tab_drag: crate::views::tab_strip::TabDragState,
     pub(crate) tab_windows: tab_windows::TabWindows,
@@ -674,6 +676,7 @@ impl AppModel {
             #[cfg(not(target_os = "macos"))]
             sidebar_available_width: gpui::px(f32::MAX),
             agent_sessions: agent_sessions::AgentSessions::new(cx),
+            insights: insights::Insights::default(),
             agents_panel: agents_panel::AgentsPanel::new(cx),
             tab_drag: crate::views::tab_strip::TabDragState::default(),
             tab_windows: tab_windows::TabWindows::default(),
@@ -2081,8 +2084,7 @@ impl AppModel {
             .map_or(self.palette, |(_, palette)| palette);
         let view = cx.new(|cx| {
             let mut pane = TerminalPane::new(palette, terminal, cx);
-            pane.native_vibrancy =
-                self.terminal_background.available && !self.is_quick_terminal(id);
+            self.apply_pane_background(&mut pane, id);
             pane.configured_font_size = self.terminal.font_size;
             pane.copy_on_select = self.settings.clipboard.copy_on_select;
             pane.open_context = open_context;

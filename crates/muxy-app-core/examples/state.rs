@@ -122,6 +122,7 @@ fn show(output: &mut impl Write, state: &AppState) -> io::Result<()> {
                     PaneContent::Servers => {
                         writeln!(output, "    Pane {} — remote servers", pane.id)?;
                     }
+                    PaneContent::Overview => writeln!(output, "    Pane {} — overview", pane.id)?,
                 }
             }
         }

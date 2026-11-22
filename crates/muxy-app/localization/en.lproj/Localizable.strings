@@ -17,6 +17,7 @@
 "%@ exited with %@" = "%@ exited with %@";
 "%@ failed: %@" = "%@ failed: %@";
 "%@ has no changes compared to %@" = "%@ has no changes compared to %@";
+"%@ in the last year" = "%@ in the last year";
 "%@ installs" = "%@ installs";
 "%@ is a folder. Only files can be sent to %@." = "%@ is a folder. Only files can be sent to %@.";
 "%@ is already published by %@. Your pull request would change their extension." = "%@ is already published by %@. Your pull request would change their extension.";
@@ -43,6 +44,8 @@
 "%@ returned an empty response: %@" = "%@ returned an empty response: %@";
 "%@ returned invalid UTF-8" = "%@ returned invalid UTF-8";
 "%@ runs an older Muxy that lists only folders inside %@. Update it there to browse others, or type a full path." = "%@ runs an older Muxy that lists only folders inside %@. Update it there to browse others, or type a full path.";
+"%@ tokens" = "%@ tokens";
+"%@ tokens in the last year" = "%@ tokens in the last year";
 "%@ unit" = "%@ unit";
 "%@ updates available" = "%@ updates available";
 "%@ wants to delete a project." = "%@ wants to delete a project.";
@@ -169,6 +172,8 @@
 "Adjust the space to the left and right of terminal text." = "Adjust the space to the left and right of terminal text.";
 "Agent" = "Agent";
 "Agent Sessions" = "Agent Sessions";
+"Agent activity" = "Agent activity";
+"Agent sessions on this Mac" = "Agent sessions on this Mac";
 "Agents" = "Agents";
 "Agents Focused" = "Agents Focused";
 "Agents Panel" = "Agents Panel";
@@ -178,6 +183,7 @@
 "Agents panel rows" = "Agents panel rows";
 "Agents start from sh, bash, zsh or fish. Change the default shell in Settings → Servers, then try again." = "Agents start from sh, bash, zsh or fish. Change the default shell in Settings → Servers, then try again.";
 "Agents use the muxy command to load and reload the extensions they build. Muxy will link it at ~/.local/bin/muxy." = "Agents use the muxy command to load and reload the extensions they build. Muxy will link it at ~/.local/bin/muxy.";
+"Agents working" = "Agents working";
 "All" = "All";
 "All Projects" = "All Projects";
 "All extensions are up to date." = "All extensions are up to date.";
@@ -328,6 +334,7 @@
 "Block all terminal output reads from this extension" = "Block all terminal output reads from this extension";
 "Blocked" = "Blocked";
 "Blue" = "Blue";
+"Blur the desktop behind the whole window. Turns off when Reduce Transparency or Increase Contrast is on." = "Blur the desktop behind the whole window. Turns off when Reduce Transparency or Increase Contrast is on.";
 "Bold font" = "Bold font";
 "Bold italic font" = "Bold italic font";
 "Bolt" = "Bolt";
@@ -537,6 +544,7 @@
 "Commit prompt" = "Commit prompt";
 "Commit provider" = "Commit provider";
 "Commit to \"%@\"?" = "Commit to \"%@\"?";
+"Commits" = "Commits";
 "Committed %@ on %@, but couldn't push" = "Committed %@ on %@, but couldn't push";
 "Committed and pushed" = "Committed and pushed";
 "Committed locally" = "Committed locally";
@@ -945,6 +953,7 @@
 "Git Changes: %@" = "Git Changes: %@";
 "Git ignores %@, so the store wouldn't get it. Remove the ignore rule and publish again." = "Git ignores %@, so the store wouldn't get it. Remove the ignore rule and publish again.";
 "Give a branch its own worktree." = "Give a branch its own worktree.";
+"Glass transparency" = "Glass transparency";
 "Global X11 shortcuts cannot cover a Wayland desktop." = "Global X11 shortcuts cannot cover a Wayland desktop.";
 "Global folder: %@" = "Global folder: %@";
 "Global template: %@" = "Global template: %@";
@@ -953,6 +962,9 @@
 "Go Backward" = "Go Backward";
 "Go Forward" = "Go Forward";
 "Go to step %lld of %lld" = "Go to step %lld of %lld";
+"Good afternoon" = "Good afternoon";
+"Good evening" = "Good evening";
+"Good morning" = "Good morning";
 "Google Play" = "Google Play";
 "Got It" = "Got It";
 "Green" = "Green";
@@ -990,6 +1002,7 @@
 "House" = "House";
 "House Fill" = "House Fill";
 "How much heavier text is drawn when Thicken font is on." = "How much heavier text is drawn when Thicken font is on.";
+"How much of the blurred desktop shows through the theme color, from 0 to 100." = "How much of the blurred desktop shows through the theme color, from 0 to 100.";
 "How much of the macOS background effect shows through the theme color, from 0 to 100. Collapsed sidebars stay solid." = "How much of the macOS background effect shows through the theme color, from 0 to 100. Collapsed sidebars stay solid.";
 "How opaque the cursor is." = "How opaque the cursor is.";
 "Huge" = "Huge";
@@ -1106,10 +1119,12 @@
 "Last seen %lld h ago" = "Last seen %lld h ago";
 "Last seen %lld min ago" = "Last seen %lld min ago";
 "Last seen just now" = "Last seen just now";
+"Late night" = "Late night";
 "Layout" = "Layout";
 "Layouts you can share" = "Layouts you can share";
 "Left" = "Left";
 "Left padding" = "Left padding";
+"Less" = "Less";
 "Let paired phones and computers reach this computer's server over the local network or a VPN. A paired phone gets full terminal access; a paired computer can also run commands and change or stop this server." = "Let paired phones and computers reach this computer's server over the local network or a VPN. A paired phone gets full terminal access; a paired computer can also run commands and change or stop this server.";
 "Let the desktop show through the terminal background." = "Let the desktop show through the terminal background.";
 "Light theme" = "Light theme";
@@ -1118,6 +1133,8 @@
 "Lime" = "Lime";
 "Line spacing" = "Line spacing";
 "Line spacing from 1.1 to 2.0." = "Line spacing from 1.1 to 2.0.";
+"Lines added" = "Lines added";
+"Lines removed" = "Lines removed";
 "Link" = "Link";
 "Link Circle" = "Link Circle";
 "Link Circle Fill" = "Link Circle Fill";
@@ -1194,6 +1211,8 @@
 "Missing update size" = "Missing update size";
 "Missing update version" = "Missing update version";
 "Mobile settings may contain only enabled and port" = "Mobile settings may contain only enabled and port";
+"Month" = "Month";
+"More" = "More";
 "More Actions" = "More Actions";
 "More Actions for %@" = "More Actions for %@";
 "More Composer Actions" = "More Composer Actions";
@@ -1290,11 +1309,13 @@
 "No SSH? Pair instead" = "No SSH? Pair instead";
 "No Shortcut" = "No Shortcut";
 "No agent found. Install Claude Code, Codex, or another supported agent." = "No agent found. Install Claude Code, Codex, or another supported agent.";
+"No agent sessions found. Pane reads Claude Code and Codex logs on this Mac. Run an agent in any pane to start filling this in." = "No agent sessions found. Pane reads Claude Code and Codex logs on this Mac. Run an agent in any pane to start filling this in.";
 "No agent sessions in this project" = "No agent sessions in this project";
 "No agents running" = "No agents running";
 "No clients paired yet." = "No clients paired yet.";
 "No cloud, no account" = "No cloud, no account";
 "No commit was created" = "No commit was created";
+"No commits by you in your projects in the last year. Pane reads each project's Git history on this Mac." = "No commits by you in your projects in the last year. Pane reads each project's Git history on this Mac.";
 "No custom commands yet." = "No custom commands yet.";
 "No custom key bindings yet." = "No custom key bindings yet.";
 "No custom rules. Matching extensions open automatically; overlaps show a chooser. Unmatched local files go to the file manager." = "No custom rules. Matching extensions open automatically; overlaps show a chooser. Unmatched local files go to the file manager.";
@@ -1471,6 +1492,7 @@
 "Phones and other computers paired with this server. Revoking one disconnects it immediately." = "Phones and other computers paired with this server. Revoking one disconnects it immediately.";
 "Photo" = "Photo";
 "Photo Fill" = "Photo Fill";
+"Pick up where you left off" = "Pick up where you left off";
 "Pin" = "Pin";
 "Pin Quick Terminal" = "Pin Quick Terminal";
 "Pin Tab" = "Pin Tab";
@@ -1629,6 +1651,9 @@
 "Replaces the 16 ANSI colors. Leave a color empty to use the theme." = "Replaces the 16 ANSI colors. Leave a color empty to use the theme.";
 "Replaces the theme's terminal background, such as #1e1e2e. Leave empty to use the theme." = "Replaces the theme's terminal background, such as #1e1e2e. Leave empty to use the theme.";
 "Replaces the theme's terminal text color. Leave empty to use the theme." = "Replaces the theme's terminal text color. Leave empty to use the theme.";
+"Repos this month" = "Repos this month";
+"Repos this week" = "Repos this week";
+"Repos today" = "Repos today";
 "Repository" = "Repository";
 "Requested permissions" = "Requested permissions";
 "Reset" = "Reset";
@@ -1825,6 +1850,7 @@
 "Show Muxy Tip" = "Show Muxy Tip";
 "Show Only in %@" = "Show Only in %@";
 "Show Open in App button" = "Show Open in App button";
+"Show Overview" = "Show Overview";
 "Show Pairing Code" = "Show Pairing Code";
 "Show Project in File Manager" = "Show Project in File Manager";
 "Show Welcome Tour" = "Show Welcome Tour";
@@ -1914,6 +1940,7 @@
 "Stop the Server on %@?" = "Stop the Server on %@?";
 "Stopped" = "Stopped";
 "Stopping…" = "Stopping…";
+"Streak" = "Streak";
 "Suggestions" = "Suggestions";
 "Swatchpalette" = "Swatchpalette";
 "Switch Project…" = "Switch Project…";
@@ -2090,6 +2117,7 @@
 "Timer" = "Timer";
 "Tips turned off" = "Tips turned off";
 "To pair a phone or another computer, open Settings → Servers, turn on Allow clients, and click Show Pairing Code, or run muxy mobile enable and then muxy mobile pair." = "To pair a phone or another computer, open Settings → Servers, turn on Allow clients, and click Show Pairing Code, or run muxy mobile enable and then muxy mobile pair.";
+"Today" = "Today";
 "Toggle Agent Sessions" = "Toggle Agent Sessions";
 "Toggle Agents Panel" = "Toggle Agents Panel";
 "Toggle Composer" = "Toggle Composer";
@@ -2227,6 +2255,7 @@
 "Waveform Path" = "Waveform Path";
 "Web Inspector" = "Web Inspector";
 "Web content process terminated" = "Web content process terminated";
+"Week" = "Week";
 "Welcome Tour" = "Welcome Tour";
 "Welcome to Muxy" = "Welcome to Muxy";
 "When a server lacks Muxy, the app offers to install it there." = "When a server lacks Muxy, the app offers to install it there.";
@@ -2235,6 +2264,7 @@
 "Width" = "Width";
 "Width 480–1200; height 280–800 pixels." = "Width 480–1200; height 280–800 pixels.";
 "Width in pixels for a new workspace window when no saved bounds exist." = "Width in pixels for a new workspace window when no saved bounds exist.";
+"Window glass" = "Window glass";
 "Window size" = "Window size";
 "Windows refused a notification: %@" = "Windows refused a notification: %@";
 "Windows refused to set up notifications: %@" = "Windows refused to set up notifications: %@";
@@ -2260,6 +2290,7 @@
 "X11 returned an empty keyboard map." = "X11 returned an empty keyboard map.";
 "Yellow" = "Yellow";
 "You can show tips again in Settings → Appearance → Interface by turning on Show tips." = "You can show tips again in Settings → Appearance → Interface by turning on Show tips.";
+"You used" = "You used";
 "Your code appears here" = "Your code appears here";
 "Your draft stays" = "Your draft stays";
 "Your extensions are ready." = "Your extensions are ready.";
@@ -2273,9 +2304,11 @@
 "Zoom Out" = "Zoom Out";
 "Zoom Out Page" = "Zoom Out Page";
 "Zoomed" = "Zoomed";
+"active" = "active";
 "add project" = "add project";
 "allow" = "allow";
 "and %lld more" = "and %lld more";
+"and worked on" = "and worked on";
 "apply layout" = "apply layout";
 "archive checksum does not match the marketplace" = "archive checksum does not match the marketplace";
 "archive entry size mismatch" = "archive entry size mismatch";
@@ -2304,6 +2337,8 @@
 "close tab" = "close tab";
 "close tabs to the left" = "close tabs to the left";
 "close tabs to the right" = "close tabs to the right";
+"commit" = "commit";
+"commits" = "commits";
 "committed %@" = "committed %@";
 "composer close" = "composer close";
 "composer insert" = "composer insert";
@@ -2315,6 +2350,8 @@
 "couldn't open the pull request" = "couldn't open the pull request";
 "couldn't push" = "couldn't push";
 "create extension" = "create extension";
+"day" = "day";
+"days" = "days";
 "decrease font size" = "decrease font size";
 "deny" = "deny";
 "detach terminal" = "detach terminal";
@@ -2331,6 +2368,9 @@
 "failed to install Carbon event handler (%lld)" = "failed to install Carbon event handler (%lld)";
 "failed to install Quick Terminal shortcut recorder" = "failed to install Quick Terminal shortcut recorder";
 "failed to register Carbon hotkey (%lld)" = "failed to register Carbon hotkey (%lld)";
+"fewer commit" = "fewer commit";
+"fewer commits" = "fewer commits";
+"fewer tokens" = "fewer tokens";
 "find" = "find";
 "find next" = "find next";
 "find previous" = "find previous";
@@ -2356,6 +2396,7 @@
 "invalid marketplace details" = "invalid marketplace details";
 "macOS ended your terminals when Muxy quit, because Muxy isn't allowed to run in the background. To keep them running, allow Muxy to run in the background in Login Items settings." = "macOS ended your terminals when Muxy quit, because Muxy isn't allowed to run in the background. To keep them running, allow Muxy to run in the background in Login Items settings.";
 "macOS ends terminals when Muxy quits unless Muxy may run in the background. Allow it in Login Items settings." = "macOS ends terminals when Muxy quits unless Muxy may run in the background. Allow it in Login Items settings.";
+"made" = "made";
 "manage extensions" = "manage extensions";
 "marketplace response is too large" = "marketplace response is too large";
 "marketplace.icon is required (SVG, or square PNG of at least 256×256)." = "marketplace.icon is required (SVG, or square PNG of at least 256×256).";
@@ -2367,6 +2408,9 @@
 "menu open submenu" = "menu open submenu";
 "minimize" = "minimize";
 "missing archive URL" = "missing archive URL";
+"more commit" = "more commit";
+"more commits" = "more commits";
+"more tokens" = "more tokens";
 "move pane to new tab" = "move pane to new tab";
 "move pane to new window" = "move pane to new window";
 "move tab left" = "move tab left";
@@ -2388,6 +2432,7 @@
 "next prompt" = "next prompt";
 "next tab" = "next tab";
 "no display is available for Quick Terminal" = "no display is available for Quick Terminal";
+"now" = "now";
 "open configuration" = "open configuration";
 "open keyboard shortcuts" = "open keyboard shortcuts";
 "open project in default app" = "open project in default app";
@@ -2410,6 +2455,8 @@
 "previous project" = "previous project";
 "previous prompt" = "previous prompt";
 "previous tab" = "previous tab";
+"project" = "project";
+"projects" = "projects";
 "pushed %@/%@" = "pushed %@/%@";
 "quit" = "quit";
 "reload configuration" = "reload configuration";
@@ -2423,6 +2470,7 @@
 "resize pane left" = "resize pane left";
 "resize pane right" = "resize pane right";
 "resize pane up" = "resize pane up";
+"resume" = "resume";
 "reveal project" = "reveal project";
 "scroll to bottom" = "scroll to bottom";
 "scroll to top" = "scroll to top";
@@ -2455,8 +2503,10 @@
 "show all" = "show all";
 "show floating terminal in all projects" = "show floating terminal in all projects";
 "show floating terminal in its project" = "show floating terminal in its project";
+"show overview" = "show overview";
 "show tip" = "show tip";
 "show welcome tour" = "show welcome tour";
+"so far" = "so far";
 "split down" = "split down";
 "split right" = "split right";
 "switch project" = "switch project";
@@ -2500,6 +2550,11 @@
 "text input up" = "text input up";
 "text input word left" = "text input word left";
 "text input word right" = "text input word right";
+"than last week" = "than last week";
+"than the 30 days before" = "than the 30 days before";
+"than yesterday" = "than yesterday";
+"this month" = "this month";
+"this week" = "this week";
 "toggle agent sessions" = "toggle agent sessions";
 "toggle agents panel" = "toggle agents panel";
 "toggle command palette" = "toggle command palette";

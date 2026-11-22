@@ -23,6 +23,7 @@ actions!(
     [
         OpenSettings,
         OpenAbout,
+        ShowOverview,
         ShowWelcomeTour,
         CheckForUpdates,
         MoveTabToNewWindow,
@@ -504,7 +505,7 @@ impl AppModel {
                             .flex()
                             .flex_col()
                             .flex_none()
-                            .bg(theme.bg)
+                            .bg(self.chrome_background())
                             .map(|header| {
                                 titlebar::top_corners(header, window, sidebar_width <= 0.0, true)
                             })
@@ -585,7 +586,7 @@ fn empty(model: &AppModel, cx: &mut Context<AppModel>) -> gpui::AnyElement {
     let m = model.metrics;
     let missing = model.state.current_project().status() == muxy_app_core::ProjectStatus::Missing;
     div()
-        .bg(theme.bg)
+        .bg(model.chrome_background())
         .size_full()
         .flex()
         .flex_col()

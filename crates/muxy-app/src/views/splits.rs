@@ -494,6 +494,7 @@ fn pane_name(content: &PaneContent, title: &str) -> SharedString {
         PaneContent::Webview(_) => tr!("Extension"),
         PaneContent::Browser(_) => tr!("Browser"),
         PaneContent::Servers => tr!("Servers"),
+        PaneContent::Overview => tr!("Overview"),
     };
     if title.is_empty() || title == kind.as_ref() {
         kind
@@ -589,6 +590,9 @@ fn pane_element(
 }
 
 fn pane_content(id: muxy_app_core::PaneId, model: &AppModel, cx: &Context<AppModel>) -> AnyElement {
+    if model.state.is_overview_pane(id) {
+        return super::overview::render(id, model, cx);
+    }
     if model.state.is_settings_pane(id)
         && let Some(settings) = &model.settings_tab
     {

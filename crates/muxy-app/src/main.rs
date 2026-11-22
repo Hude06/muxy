@@ -53,6 +53,7 @@ mod views {
     pub(crate) mod native_modal;
     pub(crate) mod onboarding;
     pub(crate) mod overlays;
+    pub(crate) mod overview;
     pub(crate) mod pair_form;
     pub(crate) mod project_apps;
     pub(crate) mod project_editor;
@@ -241,7 +242,7 @@ fn run() -> ExitCode {
         if let Err(error) = cx.open_window(options, |window, cx| {
             #[cfg(target_os = "linux")]
             window.set_window_title(app_name());
-            let model = cx.new(|cx| AppModel::new(boot, window, cx));
+            let model = cx.new(|cx| AppModel::launch(boot, window, cx));
             model.update(cx, |_, cx| AppModel::open_folders_from(opened_folders, cx));
             model.update(cx, |model, cx| model.start_app_socket(window, cx));
             let configuration = model.downgrade();

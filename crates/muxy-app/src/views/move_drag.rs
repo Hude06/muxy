@@ -781,6 +781,7 @@ fn pane_icon(content: &muxy_app_core::PaneContent) -> Icon {
         }
         muxy_app_core::PaneContent::Webview(_) => Icon::Puzzle,
         muxy_app_core::PaneContent::Browser(_) => Icon::Globe,
+        muxy_app_core::PaneContent::Overview => Icon::Dashboard,
     }
 }
 

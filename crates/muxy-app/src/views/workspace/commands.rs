@@ -25,11 +25,11 @@ use super::{
     RenameProject, RenameTab, ResetFontSize, ResetTabTitle, ResizePaneDown, ResizePaneLeft,
     ResizePaneRight, ResizePaneUp, RevealProject, ScrollToBottom, ScrollToTop, SelectAllInTerminal,
     SelectCommandOutput, ShowAll, ShowFloatingTerminalInAllProjects,
-    ShowFloatingTerminalInItsProject, ShowServers, ShowTip, ShowWelcomeTour, SplitDown, SplitRight,
-    SwitchProject, SwitchWorkspace, SwitchWorktree, ToggleAgentSessions, ToggleAgentsPanel,
-    ToggleCommandPalette, ToggleComposer, ToggleFloatingTerminals, ToggleFullScreen,
-    ToggleProjectFocus, ToggleSidebar, ToggleStatusBar, ToggleTabPin, ToggleThemePicker,
-    ToggleWorktrees, ToggleZoomPane, Zoom,
+    ShowFloatingTerminalInItsProject, ShowOverview, ShowServers, ShowTip, ShowWelcomeTour,
+    SplitDown, SplitRight, SwitchProject, SwitchWorkspace, SwitchWorktree, ToggleAgentSessions,
+    ToggleAgentsPanel, ToggleCommandPalette, ToggleComposer, ToggleFloatingTerminals,
+    ToggleFullScreen, ToggleProjectFocus, ToggleSidebar, ToggleStatusBar, ToggleTabPin,
+    ToggleThemePicker, ToggleWorktrees, ToggleZoomPane, Zoom,
 };
 use crate::model::AppModel;
 use crate::model::browsers::BrowserAction;
@@ -581,6 +581,12 @@ static COMMANDS: &[CommandDef] = &[
         .keywords("Settings Open Settings")
         .placed()
         .run(AppModel::open_settings),
+    row::<ShowOverview>(
+        ShortcutId::ShowOverview,
+        Label::Key(tr_key!("Show Overview")),
+    )
+    .keywords("Overview Stats Statistics Dashboard Insights Commits Tokens")
+    .run(|model, _, cx| model.open_overview(cx)),
     row::<ShowWelcomeTour>(
         ShortcutId::ShowWelcomeTour,
         Label::Key(tr_key!("Show Welcome Tour")),

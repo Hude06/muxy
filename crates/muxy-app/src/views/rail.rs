@@ -71,7 +71,7 @@ pub(super) fn content(
                 .h_full()
                 .py(m.spacing2())
                 .overflow_y_scroll()
-                .bg(model.theme.bg)
+                .bg(model.chrome_background())
                 .border_l_1()
                 .border_color(model.theme.border)
                 .children(model.rail_buttons(cx)),

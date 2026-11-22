@@ -168,6 +168,7 @@ pub(crate) struct TerminalPane {
     header_background: Option<u32>,
     pub(crate) background_opacity: f32,
     pub(crate) native_vibrancy: bool,
+    pub(crate) glass_tint: Option<f32>,
     pub(crate) terminal: muxy_app_core::settings::TerminalSettings,
     pub(crate) state: PaneState,
     pub(crate) process: Option<ForegroundProcess>,
@@ -183,7 +184,9 @@ impl EventEmitter<PaneEvent> for TerminalPane {}
 
 impl TerminalPane {
     pub(super) fn background_alpha(&self) -> f32 {
-        let tint = if self.native_vibrancy {
+        let tint = if let Some(tint) = self.glass_tint {
+            tint
+        } else if self.native_vibrancy {
             1.0 - f32::from(self.terminal.options.background_vibrancy.min(100)) / 100.0
         } else {
             1.0
@@ -308,6 +311,7 @@ impl TerminalPane {
             header_background: None,
             background_opacity: 1.0,
             native_vibrancy: false,
+            glass_tint: None,
             terminal,
             state: PaneState::Connecting,
             process: None,

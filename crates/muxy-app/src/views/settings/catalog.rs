@@ -425,6 +425,24 @@ pub(super) const SETTINGS: &[Setting] = &[
         section: tr_key!("Interface"),
     },
     Setting {
+        id: "window-glass",
+        label: tr_key!("Window glass"),
+        description: tr_key!(
+            "Blur the desktop behind the whole window. Turns off when Reduce Transparency or Increase Contrast is on."
+        ),
+        category: Category::Appearance,
+        section: tr_key!("Interface"),
+    },
+    Setting {
+        id: "window-glass-level",
+        label: tr_key!("Glass transparency"),
+        description: tr_key!(
+            "How much of the blurred desktop shows through the theme color, from 0 to 100."
+        ),
+        category: Category::Appearance,
+        section: tr_key!("Interface"),
+    },
+    Setting {
         id: "sidebar-vibrancy",
         label: tr_key!("Sidebar vibrancy"),
         description: tr_key!("Use a translucent macOS background while the sidebar is expanded."),

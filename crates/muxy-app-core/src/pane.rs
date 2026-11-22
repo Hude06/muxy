@@ -19,7 +19,8 @@ impl Pane {
             PaneContent::Settings
             | PaneContent::Webview(_)
             | PaneContent::Browser(_)
-            | PaneContent::Servers => None,
+            | PaneContent::Servers
+            | PaneContent::Overview => None,
         }
     }
 }
@@ -32,4 +33,5 @@ pub enum PaneContent {
     Webview(crate::webview::WebviewDescriptor),
     Browser(crate::browser::BrowserPane),
     Servers,
+    Overview,
 }

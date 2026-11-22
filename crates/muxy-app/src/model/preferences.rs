@@ -18,6 +18,7 @@ pub(crate) enum Change {
     Theme(bool, String),
     Sidebar(bool),
     SidebarVibrancy(bool),
+    WindowGlass(bool),
     ExtensionSidebar(String),
     Language(String),
     Worktrees(WorktreeToggle, bool),
@@ -149,8 +150,11 @@ pub(super) struct TerminalPreview {
 #[derive(Default)]
 pub(super) struct TerminalBackground {
     pub(super) available: bool,
+    pub(super) glass_tint: Option<f32>,
     #[cfg(all(target_os = "macos", not(test)))]
     native: Option<muxy_ui::vibrancy::TerminalVibrancy>,
+    #[cfg(all(target_os = "macos", not(test)))]
+    glass: Option<muxy_ui::vibrancy::WindowGlass>,
 }
 
 impl AppModel {
@@ -632,6 +636,10 @@ impl AppModel {
                 settings.appearance.sidebar_vibrancy = value;
                 settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
             }
+            Change::WindowGlass(value) => {
+                settings.appearance.window_glass = value;
+                settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
+            }
             Change::ExtensionSidebar(owner) => {
                 settings.appearance.extension_sidebar = owner;
                 settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
@@ -648,6 +656,16 @@ impl AppModel {
                     return Err(tr!("Enter a whole number from 0 to 100").to_string().into());
                 }
                 settings.appearance.sidebar_vibrancy_level = level;
+                settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
+            }
+            Change::Field("window-glass-level", value) => {
+                let level: u8 = value
+                    .parse()
+                    .map_err(|_| tr!("Enter a whole number from 0 to 100").to_string())?;
+                if level > 100 {
+                    return Err(tr!("Enter a whole number from 0 to 100").to_string().into());
+                }
+                settings.appearance.window_glass_level = level;
                 settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
             }
             Change::StatusBar(value) => {
@@ -1026,6 +1044,25 @@ impl AppModel {
 
     #[cfg(all(target_os = "macos", not(test)))]
     pub(crate) fn sync_background_effects(&mut self, window: &Window, cx: &mut Context<Self>) {
+        if self.window_glass_wanted() {
+            let background = self.theme.bg;
+            if let Some(glass) = &mut self.terminal_background.glass {
+                glass.update(window, background);
+            } else {
+                self.terminal_background.glass =
+                    muxy_ui::vibrancy::WindowGlass::new(window, background);
+            }
+            if self.terminal_background.glass.is_some() {
+                self.sidebar_vibrancy = None;
+                self.terminal_background.native = None;
+                self.set_terminal_vibrancy_available(false, cx);
+                self.set_glass_tint(Some(self.window_glass_tint()), cx);
+                return;
+            }
+        } else {
+            self.terminal_background.glass = None;
+        }
+        self.set_glass_tint(None, cx);
         self.sync_sidebar_vibrancy(window);
         let options = &self.terminal.options;
         if options.background_vibrancy == 0 || !self.terminal_effects_allowed() {
@@ -1044,6 +1081,53 @@ impl AppModel {
                 muxy_ui::vibrancy::TerminalVibrancy::new(window, offset, width, background);
         }
         self.set_terminal_vibrancy_available(self.terminal_background.native.is_some(), cx);
+    }
+
+    #[cfg(all(target_os = "macos", not(test)))]
+    pub(crate) fn window_glass_wanted(&self) -> bool {
+        self.appearance.window_glass
+            && self.appearance.window_glass_level > 0
+            && self.terminal_effects_allowed()
+    }
+
+    #[cfg(all(target_os = "macos", not(test)))]
+    pub(crate) fn window_glass_tint(&self) -> f32 {
+        1.0 - f32::from(self.appearance.window_glass_level.min(100)) / 100.0
+    }
+
+    pub(crate) fn glass_tint(&self) -> Option<f32> {
+        self.terminal_background.glass_tint
+    }
+
+    pub(crate) fn apply_pane_background(
+        &self,
+        pane: &mut crate::views::terminal::pane::TerminalPane,
+        id: super::PaneId,
+    ) {
+        pane.native_vibrancy = self.terminal_background.available && !self.is_quick_terminal(id);
+        pane.glass_tint = self.pane_glass_tint(id);
+    }
+
+    pub(crate) fn pane_glass_tint(&self, pane: super::PaneId) -> Option<f32> {
+        self.glass_tint().filter(|_| !self.is_quick_terminal(pane))
+    }
+
+    #[cfg(all(target_os = "macos", not(test)))]
+    pub(crate) fn set_glass_tint(&mut self, tint: Option<f32>, cx: &mut Context<Self>) {
+        if self.terminal_background.glass_tint == tint {
+            return;
+        }
+        self.terminal_background.glass_tint = tint;
+        for (id, pane) in &self.grids {
+            let tint = self.pane_glass_tint(*id);
+            pane.view.update(cx, |pane, cx| {
+                if pane.glass_tint != tint {
+                    pane.glass_tint = tint;
+                    cx.notify();
+                }
+            });
+        }
+        cx.notify();
     }
 
     #[cfg(all(target_os = "macos", not(test)))]
@@ -1414,6 +1498,7 @@ fn change_id(change: &Change) -> &str {
         Change::Theme(true, _) => "dark-theme",
         Change::Sidebar(_) => "sidebar",
         Change::SidebarVibrancy(_) => "sidebar-vibrancy",
+        Change::WindowGlass(_) => "window-glass",
         Change::ExtensionSidebar(_) => "extension-sidebar",
         Change::Language(_) => "app-language",
         Change::Worktrees(toggle, _) => toggle.id(),

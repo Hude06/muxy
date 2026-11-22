@@ -142,6 +142,29 @@ pub(super) fn rows(
     if category == Category::Appearance && pane.matches(category, tr_key!("Active sidebar")) {
         rows.push(active_sidebar(pane, cx));
     }
+    if category == Category::Appearance && pane.matches(category, tr_key!("Window glass")) {
+        rows.push(pane.row(
+            "window-glass",
+            tr_key!("Window glass"),
+            pane.toggle(
+                "window-glass",
+                appearance.window_glass,
+                Change::WindowGlass(!appearance.window_glass),
+                cx,
+            ),
+        ));
+    }
+    if category == Category::Appearance && pane.matches(category, tr_key!("Glass transparency")) {
+        rows.push(pane.row(
+            "window-glass-level",
+            tr_key!("Glass transparency"),
+            pane.slider(
+                Slider::new("window-glass-level", (0.0, 100.0), 1.0, "%", Commit::Field),
+                f32::from(appearance.window_glass_level),
+                cx,
+            ),
+        ));
+    }
     if category == Category::Appearance && pane.matches(category, tr_key!("Sidebar vibrancy")) {
         rows.push(pane.row(
             "sidebar-vibrancy",

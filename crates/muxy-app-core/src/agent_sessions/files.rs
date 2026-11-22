@@ -34,6 +34,13 @@ impl Roots {
         }
     }
 
+    pub(crate) fn root(&self, provider: AgentProvider) -> Option<&Path> {
+        self.sources
+            .iter()
+            .find(|(candidate, _, _)| *candidate == provider)
+            .map(|(_, root, _)| root.as_path())
+    }
+
     pub fn from_environment() -> Option<Self> {
         let mut roots = Self::from_home(&std::env::home_dir()?);
         for (provider, root, _) in &mut roots.sources {

@@ -99,6 +99,33 @@ impl TerminalVibrancy {
     }
 }
 
+#[derive(Debug)]
+pub struct WindowGlass {
+    effect: SidebarVibrancy,
+}
+
+impl WindowGlass {
+    pub fn new(window: &Window, background: Hsla) -> Option<Self> {
+        let width = f32::from(window.viewport_size().width);
+        let effect = SidebarVibrancy::new(window, width, background)?;
+        effect
+            .view
+            .setMaterial(NSVisualEffectMaterial::UnderWindowBackground);
+        effect.view.setState(NSVisualEffectState::Active);
+        effect.view.setAutoresizingMask(
+            NSAutoresizingMaskOptions::ViewWidthSizable
+                | NSAutoresizingMaskOptions::ViewHeightSizable,
+        );
+        Some(Self { effect })
+    }
+
+    pub fn update(&mut self, window: &Window, background: Hsla) {
+        self.effect
+            .set_width(f32::from(window.viewport_size().width));
+        self.effect.set_appearance(background);
+    }
+}
+
 fn appearance(background: Hsla) -> Appearance {
     if background.l < 0.5 {
         Appearance::Dark

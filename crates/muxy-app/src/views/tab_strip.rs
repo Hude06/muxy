@@ -137,7 +137,7 @@ pub(crate) fn group_strip(
         .items_center()
         .h(model.metrics.scaled(32.0))
         .flex_none()
-        .bg(model.theme.bg)
+        .bg(model.chrome_background())
         .child(
             div()
                 .id(SharedString::from(format!("group-tabs-{}", group.id())))

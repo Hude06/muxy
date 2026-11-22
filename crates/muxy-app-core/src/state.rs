@@ -1120,7 +1120,8 @@ impl AppState {
             PaneContent::Settings
             | PaneContent::Webview(_)
             | PaneContent::Browser(_)
-            | PaneContent::Servers => Err(AppError::NotTerminal(pane)),
+            | PaneContent::Servers
+            | PaneContent::Overview => Err(AppError::NotTerminal(pane)),
         }
     }
 

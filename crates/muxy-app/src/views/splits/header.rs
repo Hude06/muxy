@@ -41,7 +41,7 @@ struct Action {
 
 pub(super) fn colors(pane: PaneId, model: &AppModel, cx: &App) -> (Hsla, Hsla) {
     model.terminal(&pane).map_or_else(
-        || (model.theme.bg, model.theme.fg),
+        || (model.chrome_background(), model.theme.fg),
         |terminal| terminal.view.read(cx).header_colors(),
     )
 }
@@ -274,6 +274,7 @@ fn glyph(pane: &Pane, bell: bool, foreground: Hsla, model: &AppModel, cx: &App) 
     let (icon, color) = match pane.content {
         PaneContent::Settings => (Icon::Settings, foreground),
         PaneContent::Servers => (Icon::Network, foreground),
+        PaneContent::Overview => (Icon::Dashboard, foreground),
         PaneContent::Browser(_) => (Icon::Globe, foreground),
         PaneContent::Webview(_) => (Icon::Puzzle, foreground),
         PaneContent::Terminal { .. } if bell => (Icon::Bell, model.theme.accent),

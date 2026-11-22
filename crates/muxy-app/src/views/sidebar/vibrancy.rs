@@ -23,13 +23,31 @@ impl AppModel {
         }
     }
 
+    pub(crate) fn chrome_background(&self) -> Hsla {
+        glass(self.theme.bg, self.glass_tint())
+    }
+
     pub(crate) fn sidebar_background(&self) -> Hsla {
+        if let Some(tint) = self.glass_tint() {
+            return glass(self.theme.bg, Some(tint * SIDEBAR_GLASS));
+        }
         #[cfg(target_os = "macos")]
         let available = self.sidebar_vibrancy.is_some();
         #[cfg(not(target_os = "macos"))]
         let available = false;
         background(&self.appearance, &self.theme, available)
     }
+}
+
+const SIDEBAR_GLASS: f32 = 0.75;
+
+fn glass(background: Hsla, tint: Option<f32>) -> Hsla {
+    let Some(tint) = tint else {
+        return background;
+    };
+    let mut color = background;
+    color.a = tint;
+    color
 }
 
 fn enabled(appearance: &Appearance) -> bool {

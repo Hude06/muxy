@@ -30,7 +30,7 @@ pub(crate) fn status_bar(model: &AppModel, cx: &mut Context<AppModel>) -> impl I
         .flex_none()
         .items_center()
         .h(m.status_bar_height())
-        .bg(theme.bg)
+        .bg(model.chrome_background())
         .border_t_1()
         .border_color(theme.border)
         .child(
