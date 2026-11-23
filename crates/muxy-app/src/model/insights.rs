@@ -46,6 +46,7 @@ impl AppModel {
     ) -> Self {
         let mut model = Self::new(boot, window, cx);
         model.open_overview(cx);
+        model.start_plan_usage(cx);
         model
     }
 

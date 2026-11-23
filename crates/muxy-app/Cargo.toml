@@ -29,6 +29,7 @@ muxy-client = { path = "../muxy-client" }
 muxy-protocol = { path = "../muxy-protocol" }
 
 [target.'cfg(unix)'.dependencies]
+ring = "0.17.14"
 rustix = { version = "1.1.4", features = ["fs", "system"] }
 
 [target.'cfg(windows)'.dependencies]

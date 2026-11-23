@@ -25,6 +25,7 @@ mod language;
 mod links;
 pub(crate) mod onboarding;
 mod pairing;
+pub(crate) mod plan_usage;
 pub(crate) use pairing::PairingForm;
 mod pane_runtime;
 pub(crate) mod preferences;
@@ -195,6 +196,7 @@ pub(crate) struct AppModel {
     pub(crate) sidebar_available_width: gpui::Pixels,
     pub(crate) agent_sessions: agent_sessions::AgentSessions,
     pub(crate) insights: insights::Insights,
+    pub(crate) plan_usage: plan_usage::PlanUsage,
     pub(crate) agents_panel: agents_panel::AgentsPanel,
     pub(crate) tab_drag: crate::views::tab_strip::TabDragState,
     pub(crate) tab_windows: tab_windows::TabWindows,
@@ -676,6 +678,7 @@ impl AppModel {
             sidebar_available_width: gpui::px(f32::MAX),
             agent_sessions: agent_sessions::AgentSessions::new(cx),
             insights: insights::Insights::default(),
+            plan_usage: plan_usage::PlanUsage::default(),
             agents_panel: agents_panel::AgentsPanel::new(cx),
             tab_drag: crate::views::tab_strip::TabDragState::default(),
             tab_windows: tab_windows::TabWindows::default(),

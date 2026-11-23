@@ -20,6 +20,7 @@ mod model;
 mod navigation;
 mod opener;
 mod picker;
+mod plan_usage;
 mod profiler;
 mod project_icon;
 mod proxy;
@@ -54,6 +55,7 @@ mod views {
     pub(crate) mod overlays;
     pub(crate) mod overview;
     pub(crate) mod pair_form;
+    pub(crate) mod plan_usage;
     pub(crate) mod project_apps;
     pub(crate) mod project_editor;
     pub(crate) mod project_layouts;

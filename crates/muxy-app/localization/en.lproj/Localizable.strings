@@ -101,6 +101,7 @@
 "1 more project" = "1 more project";
 "1 unread notification" = "1 unread notification";
 "1 update available" = "1 update available";
+"5h" = "5h";
 "A Git action is already pending" = "A Git action is already pending";
 "A Unicode range, such as U+E000-U+F8FF." = "A Unicode range, such as U+E000-U+F8FF.";
 "A color, cell-foreground, or cell-background. Leave empty to use the theme." = "A color, cell-foreground, or cell-background. Leave empty to use the theme.";
@@ -455,6 +456,7 @@
 "Circle" = "Circle";
 "Circle Fill" = "Circle Fill";
 "Claude Code needs you" = "Claude Code needs you";
+"Claude plans" = "Claude plans";
 "Clean" = "Clean";
 "Clear" = "Clear";
 "Clear After Sending" = "Clear After Sending";
@@ -679,6 +681,7 @@
 "Could not show close confirmation: %@" = "Could not show close confirmation: %@";
 "Could not show confirmation: %@" = "Could not show confirmation: %@";
 "Could not show the file: %@" = "Could not show the file: %@";
+"Could not start %@: %@" = "Could not start %@: %@";
 "Could not stop server: %@" = "Could not stop server: %@";
 "Could not take the password: %@" = "Could not take the password: %@";
 "Could not update the extension (%@) or restore it (%@). The previous version is saved at %@" = "Could not update the extension (%@) or restore it (%@). The previous version is saved at %@";
@@ -686,6 +689,7 @@
 "Could not update the server: %@" = "Could not update the server: %@";
 "Could not use the proxy for SSH: %@" = "Could not use the proxy for SSH: %@";
 "Could not write clipboard data" = "Could not write clipboard data";
+"Couldn't check usage: %@" = "Couldn't check usage: %@";
 "Couldn't close PR #%lld" = "Couldn't close PR #%lld";
 "Couldn't commit" = "Couldn't commit";
 "Couldn't create %@" = "Couldn't create %@";
@@ -1356,6 +1360,7 @@
 "Not installed" = "Not installed";
 "Not installed yet" = "Not installed yet";
 "Not listening: %@" = "Not listening: %@";
+"Not signed in. Run %@ and log in." = "Not signed in. Run %@ and log in.";
 "Not supported" = "Not supported";
 "Notes about imported terminal settings. Your original configuration is preserved." = "Notes about imported terminal settings. Your original configuration is preserved.";
 "Nothing is staged. Stage changes first or include unstaged changes." = "Nothing is staged. Stage changes first or include unstaged changes.";
@@ -1596,6 +1601,7 @@
 "Rectangle Grid 1x2 Fill" = "Rectangle Grid 1x2 Fill";
 "Red" = "Red";
 "Refresh" = "Refresh";
+"Refresh Claude plans" = "Refresh Claude plans";
 "Refresh sessions" = "Refresh sessions";
 "Refresh the pull request status before trying again." = "Refresh the pull request status before trying again.";
 "Regex" = "Regex";
@@ -1887,6 +1893,7 @@
 "Shows only the current project in the sidebar, or every project again." = "Shows only the current project in the sidebar, or every project again.";
 "Sidebar vibrancy" = "Sidebar vibrancy";
 "Sidebar vibrancy level" = "Sidebar vibrancy level";
+"Sign-in expired. Run %@ once to renew it." = "Sign-in expired. Run %@ once to renew it.";
 "Size" = "Size";
 "Skip Tour" = "Skip Tour";
 "Skip whenever you like. You can replay it from the command palette." = "Skip whenever you like. You can replay it from the command palette.";
@@ -1922,6 +1929,7 @@
 "Staged and unstaged" = "Staged and unstaged";
 "Star" = "Star";
 "Star Fill" = "Star Fill";
+"Start %@ in a new tab" = "Start %@ in a new tab";
 "Start Tour" = "Start Tour";
 "Start new tabs and splits in the focused pane's working directory instead of the project folder." = "Start new tabs and splits in the focused pane's working directory instead of the project folder.";
 "Starting" = "Starting";
@@ -2409,6 +2417,7 @@
 "more commit" = "more commit";
 "more commits" = "more commits";
 "more tokens" = "more tokens";
+"most room" = "most room";
 "move pane to new tab" = "move pane to new tab";
 "move pane to new window" = "move pane to new window";
 "move tab left" = "move tab left";

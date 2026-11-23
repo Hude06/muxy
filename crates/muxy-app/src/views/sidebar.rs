@@ -195,6 +195,7 @@ pub(crate) fn sidebar(model: &AppModel, window: &Window, cx: &mut Context<AppMod
                 .children(super::agents_panel::collapsed_button(model, cx)),
         )
         .children(super::agents_panel::docked(model, window, cx))
+        .children(super::plan_usage::section(model, cx))
         .child(footer(model, cx))
         .into_any_element()
 }

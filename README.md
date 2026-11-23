@@ -20,6 +20,14 @@ desktop app:
   used; and the agent sessions you can pick up again. Switch between Today,
   Week and Month. It reads Claude Code and Codex logs and the Git history of
   your projects on this Mac, and nothing leaves the computer.
+- **Claude plans.** The sidebar shows each Claude account's 5-hour and weekly
+  limits and marks the one with the most room. `~/.claude` is `claude1`, and
+  each `~/.claude-N` folder is `claudeN`; start one with
+  `CLAUDE_CONFIG_DIR=~/.claude-2 claude`. Click an account to open Claude in a
+  new tab with it. Pane reads each login on this Mac and asks Anthropic for its
+  usage; it never renews a login, so an expired one waits until you run Claude
+  with that account again. The usage address is not a documented API and may
+  change.
 - **Its own app.** Pane has its own name, icon, bundle identifier
   (`dev.hude06.pane`) and data folder (`~/Library/Application Support/Pane`,
   `Pane Dev` for local builds), so it runs beside an installed Muxy. Terminals
