@@ -87,6 +87,9 @@ pub(super) fn rows(
     if category == Category::Appearance && pane.matches(category, tr_key!("Size")) {
         rows.push(interface_size(pane, cx));
     }
+    if category == Category::Appearance && pane.matches(category, tr_key!("Sidebar size")) {
+        rows.push(sidebar_size(pane, cx));
+    }
     for (id, label, value, change) in [
         (
             "sidebar",
@@ -124,8 +127,14 @@ pub(super) fn rows(
             pane.snapshot.settings.window.confirm_running_process,
             Change::ConfirmProcess(!pane.snapshot.settings.window.confirm_running_process),
         ),
+        (
+            "sync-muxy",
+            tr_key!("Sync projects from Muxy"),
+            pane.snapshot.settings.projects.sync_from_muxy,
+            Change::SyncFromMuxy(!pane.snapshot.settings.projects.sync_from_muxy),
+        ),
     ] {
-        let target = if id == "confirm-process" {
+        let target = if matches!(id, "confirm-process" | "sync-muxy") {
             Category::General
         } else {
             Category::Appearance
@@ -527,34 +536,58 @@ fn agents_panel_icon(pane: &SettingsView, cx: &mut Context<SettingsView>) -> Any
 }
 
 fn interface_size(pane: &SettingsView, cx: &mut Context<SettingsView>) -> AnyElement {
+    size_picker(
+        pane,
+        ("interface-size", tr_key!("Size"), tr!("Interface size")),
+        pane.snapshot.settings.appearance.interface_size,
+        Change::InterfaceSize,
+        cx,
+    )
+}
+
+fn sidebar_size(pane: &SettingsView, cx: &mut Context<SettingsView>) -> AnyElement {
+    size_picker(
+        pane,
+        ("sidebar-size", tr_key!("Sidebar size"), tr!("Sidebar size")),
+        pane.snapshot.settings.appearance.sidebar_size,
+        Change::SidebarSize,
+        cx,
+    )
+}
+
+fn size_picker(
+    pane: &SettingsView,
+    (id, label, name): (&'static str, &'static str, gpui::SharedString),
+    current: InterfaceSize,
+    change: fn(InterfaceSize) -> Change,
+    cx: &mut Context<SettingsView>,
+) -> AnyElement {
     pane.row(
-        "interface-size",
-        tr_key!("Size"),
+        id,
+        label,
         controls::segmented(
             pane.style(),
-            "interface-size",
-            &tr!("Interface size"),
+            id,
+            &name,
             &[
                 Choice::new("regular", tr!("Default")),
                 Choice::new("large", tr!("Large")),
                 Choice::new("extra_large", tr!("Extra Large")),
                 Choice::new("huge", tr!("Huge")),
             ],
-            match pane.snapshot.settings.appearance.interface_size {
+            match current {
                 InterfaceSize::Regular => "regular",
                 InterfaceSize::Large => "large",
                 InterfaceSize::ExtraLarge => "extra_large",
                 InterfaceSize::Huge => "huge",
             },
-            cx.listener(|_, selected: &gpui::SharedString, _, cx| {
-                cx.emit(SettingsEvent::Change(Change::InterfaceSize(
-                    match selected.as_ref() {
-                        "large" => InterfaceSize::Large,
-                        "extra_large" => InterfaceSize::ExtraLarge,
-                        "huge" => InterfaceSize::Huge,
-                        _ => InterfaceSize::Regular,
-                    },
-                )));
+            cx.listener(move |_, selected: &gpui::SharedString, _, cx| {
+                cx.emit(SettingsEvent::Change(change(match selected.as_ref() {
+                    "large" => InterfaceSize::Large,
+                    "extra_large" => InterfaceSize::ExtraLarge,
+                    "huge" => InterfaceSize::Huge,
+                    _ => InterfaceSize::Regular,
+                })));
             }),
         ),
     )

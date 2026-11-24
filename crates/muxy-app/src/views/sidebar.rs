@@ -1384,7 +1384,7 @@ fn project_row(
                     .flex_1()
                     .min_w(px(0.0))
                     .truncate()
-                    .text_size(m.font_body())
+                    .text_size(sidebar_font(model))
                     .font_weight(FontWeight::MEDIUM)
                     .text_color(theme.fg)
                     .child(name),
@@ -1520,9 +1520,17 @@ pub(super) fn remote_description(project: &Project, model: &AppModel) -> Option<
         .map(|name| tr!("Remote project on %@", name))
 }
 
+pub(super) fn sidebar_scale(model: &AppModel) -> f32 {
+    model.appearance.sidebar_size.multiplier()
+}
+
+pub(super) fn sidebar_font(model: &AppModel) -> Pixels {
+    model.metrics.font_body() * sidebar_scale(model)
+}
+
 pub(super) fn tile_size(model: &AppModel) -> Pixels {
     if model.appearance.sidebar_expanded {
-        model.metrics.control_small()
+        model.metrics.control_small() * sidebar_scale(model)
     } else {
         model.metrics.icon_xxl()
     }

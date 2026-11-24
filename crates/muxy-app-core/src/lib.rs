@@ -13,6 +13,7 @@ pub mod insights;
 mod layout;
 pub mod localization;
 pub mod modal;
+pub mod muxy_sync;
 pub mod opener;
 mod overview_tab;
 mod pane;

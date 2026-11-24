@@ -218,7 +218,7 @@ fn row(
         .px(m.spacing2())
         .h(super::super::tab_sidebar::row_height(model))
         .rounded(m.radius_md())
-        .text_size(m.font_body())
+        .text_size(super::sidebar_font(model))
         .text_color(theme.fg)
         .when(active, |row| row.bg(theme.hover))
         .when(unavailable, |row| row.opacity(0.5))

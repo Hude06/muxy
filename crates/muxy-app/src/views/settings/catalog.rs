@@ -298,6 +298,15 @@ pub(super) const SETTINGS: &[Setting] = &[
         section: tr_key!("Window size"),
     },
     Setting {
+        id: "sync-muxy",
+        label: tr_key!("Sync projects from Muxy"),
+        description: tr_key!(
+            "Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay."
+        ),
+        category: Category::General,
+        section: tr_key!("Projects"),
+    },
+    Setting {
         id: "worktree-template",
         label: tr_key!("Default worktree path template"),
         description: tr_key!(
@@ -353,6 +362,13 @@ pub(super) const SETTINGS: &[Setting] = &[
         id: "interface-size",
         label: tr_key!("Size"),
         description: tr_key!("Controls the scale of the app interface."),
+        category: Category::Appearance,
+        section: tr_key!("Interface"),
+    },
+    Setting {
+        id: "sidebar-size",
+        label: tr_key!("Sidebar size"),
+        description: tr_key!("Scales project rows, icons and names in the sidebar."),
         category: Category::Appearance,
         section: tr_key!("Interface"),
     },

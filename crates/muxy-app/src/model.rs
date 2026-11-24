@@ -23,6 +23,7 @@ mod insert_path;
 pub(crate) mod insights;
 mod language;
 mod links;
+pub(crate) mod muxy_sync;
 pub(crate) mod onboarding;
 mod pairing;
 pub(crate) mod plan_usage;
@@ -196,6 +197,7 @@ pub(crate) struct AppModel {
     pub(crate) sidebar_available_width: gpui::Pixels,
     pub(crate) agent_sessions: agent_sessions::AgentSessions,
     pub(crate) insights: insights::Insights,
+    pub(crate) muxy_sync: muxy_sync::MuxySync,
     pub(crate) plan_usage: plan_usage::PlanUsage,
     pub(crate) agents_panel: agents_panel::AgentsPanel,
     pub(crate) tab_drag: crate::views::tab_strip::TabDragState,
@@ -678,6 +680,7 @@ impl AppModel {
             sidebar_available_width: gpui::px(f32::MAX),
             agent_sessions: agent_sessions::AgentSessions::new(cx),
             insights: insights::Insights::default(),
+            muxy_sync: muxy_sync::MuxySync::default(),
             plan_usage: plan_usage::PlanUsage::default(),
             agents_panel: agents_panel::AgentsPanel::new(cx),
             tab_drag: crate::views::tab_strip::TabDragState::default(),

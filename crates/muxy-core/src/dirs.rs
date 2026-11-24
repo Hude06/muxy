@@ -36,6 +36,22 @@ pub fn muxy_dir() -> io::Result<PathBuf> {
     Ok(directory)
 }
 
+pub fn upstream_muxy_dir() -> io::Result<PathBuf> {
+    let platform = Platform::CURRENT;
+    resolve_directory(
+        None,
+        crate::paths::home_dir().ok(),
+        env::var_os("XDG_STATE_HOME"),
+        env::var_os("LOCALAPPDATA"),
+        if platform == Platform::Linux {
+            "muxy"
+        } else {
+            "Muxy 2"
+        },
+        platform,
+    )
+}
+
 pub fn extension_workspace() -> io::Result<PathBuf> {
     resolve_extension_workspace(
         env::var_os("MUXY_DIR"),

@@ -157,6 +157,7 @@
 "Add a package-lock.json. Run npm install to make one." = "Add a package-lock.json. Run npm install to make one.";
 "Add a project" = "Add a project";
 "Add a project and the extensions most people start with." = "Add a project and the extensions most people start with.";
+"Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay." = "Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay.";
 "Add at least one marketplace.screenshots entry (PNG, 16:10 or 16:9)." = "Add at least one marketplace.screenshots entry (PNG, 16:10 or 16:9).";
 "Add space between terminal lines using pixels or a percentage, such as 10%%." = "Add space between terminal lines using pixels or a percentage, such as 10%%.";
 "Add the essentials" = "Add the essentials";
@@ -1746,6 +1747,7 @@
 "Save" = "Save";
 "Save settings, themes, extension preferences, projects, workspaces, and terminal layouts to a .muxy file." = "Save settings, themes, extension preferences, projects, workspaces, and terminal layouts to a .muxy file.";
 "Saving…" = "Saving…";
+"Scales project rows, icons and names in the sidebar." = "Scales project rows, icons and names in the sidebar.";
 "Scan it with the Muxy phone app, or on another computer choose Pair with Link… in Settings → Servers and paste the link. The code works once and expires in 5 minutes." = "Scan it with the Muxy phone app, or on another computer choose Pair with Link… in Settings → Servers and paste the link. The code works once and expires in 5 minutes.";
 "Scan the code with the Muxy app. It works once and expires in 5 minutes." = "Scan the code with the Muxy app. It works once and expires in 5 minutes.";
 "Scan with the Muxy app" = "Scan with the Muxy app";
@@ -1891,6 +1893,7 @@
 "Show “%@”" = "Show “%@”";
 "Shown in the sidebar" = "Shown in the sidebar";
 "Shows only the current project in the sidebar, or every project again." = "Shows only the current project in the sidebar, or every project again.";
+"Sidebar size" = "Sidebar size";
 "Sidebar vibrancy" = "Sidebar vibrancy";
 "Sidebar vibrancy level" = "Sidebar vibrancy level";
 "Sign-in expired. Run %@ once to renew it." = "Sign-in expired. Run %@ once to renew it.";
@@ -1956,6 +1959,7 @@
 "Switch to a branch before committing" = "Switch to a branch before committing";
 "Switch to a branch before creating a pull request" = "Switch to a branch before creating a pull request";
 "Switched to %@ and brought it up to date." = "Switched to %@ and brought it up to date.";
+"Sync projects from Muxy" = "Sync projects from Muxy";
 "Tab %lld" = "Tab %lld";
 "Tab Focused" = "Tab Focused";
 "Tab closed; server cleanup is pending: %@" = "Tab closed; server cleanup is pending: %@";

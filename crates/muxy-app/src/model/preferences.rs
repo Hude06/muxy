@@ -24,6 +24,7 @@ pub(crate) enum Change {
     Worktrees(WorktreeToggle, bool),
     SidebarCollapsedStyle(muxy_app_core::settings::SidebarCollapsedStyle),
     InterfaceSize(muxy_app_core::settings::InterfaceSize),
+    SidebarSize(muxy_app_core::settings::InterfaceSize),
     AgentsPanel(bool),
     AgentsPanelGrouping(muxy_app_core::settings::AgentsPanelGrouping),
     AgentsPanelIcon(muxy_app_core::settings::AgentsPanelIcon),
@@ -37,6 +38,7 @@ pub(crate) enum Change {
     RememberProjectsWithoutTabs(bool),
     SidebarServers(bool),
     ConfirmProcess(bool),
+    SyncFromMuxy(bool),
     CloseBehavior(muxy_app_core::settings::CloseBehavior),
     Terminal(&'static str, String),
     TerminalEdit(TerminalEdit),
@@ -594,6 +596,10 @@ impl AppModel {
                 settings.appearance.interface_size = size;
                 settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
             }
+            Change::SidebarSize(size) => {
+                settings.appearance.sidebar_size = size;
+                settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
+            }
             Change::AgentsPanel(value) => {
                 settings.appearance.agents_panel_visible = value;
                 settings.appearance = settings.appearance.save_changes(&self.appearance, &path)?;
@@ -704,6 +710,7 @@ impl AppModel {
                 settings.window.confirm_running_process = value;
                 settings.save_window(&path)?;
             }
+            Change::SyncFromMuxy(value) => settings.set_sync_from_muxy(value, &path)?,
             Change::CloseBehavior(value) => {
                 settings.window.close_behavior = value;
                 settings.save_window(&path)?;
@@ -1500,6 +1507,7 @@ fn change_id(change: &Change) -> &str {
         Change::AgentsPanelOption(toggle, _) => toggle.id(),
         Change::SidebarCollapsedStyle(_) => "sidebar-collapsed-style",
         Change::InterfaceSize(_) => "interface-size",
+        Change::SidebarSize(_) => "sidebar-size",
         Change::AgentsPanel(_) => "agents-panel",
         Change::AgentsPanelGrouping(_) => "agents-panel-grouping",
         Change::AgentsPanelIcon(_) => "agents-panel-icon",
@@ -1512,6 +1520,7 @@ fn change_id(change: &Change) -> &str {
         Change::RememberProjectsWithoutTabs(_) => "remember-projects-without-tabs",
         Change::SidebarServers(_) => "sidebar-servers",
         Change::ConfirmProcess(_) => "confirm-process",
+        Change::SyncFromMuxy(_) => "sync-muxy",
         Change::CloseBehavior(_) => "close-behavior",
         Change::FileRule { .. } | Change::RemoveFileRule(_) | Change::MoveFileRule(..) => {
             "file-rules"

@@ -302,7 +302,7 @@ impl AppState {
         })
     }
 
-    fn create_project(
+    pub(crate) fn create_project(
         &mut self,
         server: ServerId,
         directory: PathBuf,

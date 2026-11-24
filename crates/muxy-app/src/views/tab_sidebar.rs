@@ -266,7 +266,7 @@ fn add_project_button(
         .gap(m.spacing3())
         .rounded(m.radius_md())
         .cursor_pointer()
-        .text_size(m.font_body())
+        .text_size(super::sidebar::sidebar_font(model))
         .font_weight(FontWeight::MEDIUM)
         .text_color(theme.fg_muted)
         .hover(|style| style.bg(theme.hover).text_color(theme.fg))
@@ -507,7 +507,8 @@ pub(super) fn tab_description(
 }
 
 pub(super) fn row_height(model: &AppModel) -> gpui::Pixels {
-    model.metrics.control_small() + model.metrics.spacing2() * 2.0
+    (model.metrics.control_small() + model.metrics.spacing2() * 2.0)
+        * super::sidebar::sidebar_scale(model)
 }
 
 pub(super) fn group_label(text: impl Into<SharedString>, model: &AppModel) -> gpui::Div {
@@ -515,7 +516,7 @@ pub(super) fn group_label(text: impl Into<SharedString>, model: &AppModel) -> gp
         .flex_1()
         .min_w(px(0.0))
         .truncate()
-        .text_size(model.metrics.font_body())
+        .text_size(super::sidebar::sidebar_font(model))
         .text_color(model.theme.fg_muted)
         .child(text.into())
 }
@@ -714,7 +715,7 @@ fn tab_row(
         .gap(m.spacing3())
         .rounded(m.radius_md())
         .cursor_pointer()
-        .text_size(m.font_body())
+        .text_size(super::sidebar::sidebar_font(model))
         .text_color(theme.fg)
         .when(active, |row| row.bg(theme.surface))
         .when_some(color, |row, color| {

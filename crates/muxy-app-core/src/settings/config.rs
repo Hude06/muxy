@@ -115,12 +115,23 @@ pub enum NewPaneDirectory {
     Current,
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct ProjectSettings {
     pub search_root: Option<PathBuf>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub search_skip: Vec<String>,
+    pub sync_from_muxy: bool,
+}
+
+impl Default for ProjectSettings {
+    fn default() -> Self {
+        Self {
+            search_root: None,
+            search_skip: Vec::new(),
+            sync_from_muxy: true,
+        }
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -260,6 +271,15 @@ impl Settings {
         crate::settings::document::save_section(path, "window", &values)
             .map_err(|error| Error::new("window.confirm_running_process", error))?;
         self.window.confirm_running_process = enabled;
+        Ok(())
+    }
+
+    pub fn set_sync_from_muxy(&mut self, enabled: bool, path: &Path) -> Result<()> {
+        let values =
+            toml::Table::from_iter([("sync_from_muxy".into(), toml::Value::Boolean(enabled))]);
+        crate::settings::document::save_section(path, "projects", &values)
+            .map_err(|error| Error::new("projects.sync_from_muxy", error))?;
+        self.projects.sync_from_muxy = enabled;
         Ok(())
     }
 
