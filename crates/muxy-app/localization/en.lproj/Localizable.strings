@@ -1930,6 +1930,7 @@
 "Star" = "Star";
 "Star Fill" = "Star Fill";
 "Start %@ in a new tab" = "Start %@ in a new tab";
+"Start %@ →" = "Start %@ →";
 "Start Tour" = "Start Tour";
 "Start new tabs and splits in the focused pane's working directory instead of the project folder." = "Start new tabs and splits in the focused pane's working directory instead of the project folder.";
 "Starting" = "Starting";

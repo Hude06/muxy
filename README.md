@@ -17,7 +17,8 @@ desktop app:
 - **Overview.** The first tab of Home shows your day: a headline of tokens,
   commits and projects; a year of commits and of agent activity as heatmaps;
   streak, lines changed, sessions and time agents spent working; the models you
-  used; and the agent sessions you can pick up again. Switch between Today,
+  used; your Claude plan limits; and the agent sessions you can pick up again.
+  The dashboard button in the title bar reopens it. Switch between Today,
   Week and Month. It reads Claude Code and Codex logs and the Git history of
   your projects on this Mac, and nothing leaves the computer.
 - **Claude plans.** The sidebar shows each Claude account's 5-hour and weekly

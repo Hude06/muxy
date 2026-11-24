@@ -66,7 +66,7 @@ pub(super) fn actions(model: &AppModel, window: &Window, cx: &mut Context<AppMod
     });
     let settings = !model.sidebar_footer_shown();
     let rail = super::rail::toggle(model, cx);
-    let controls = 1
+    let controls = 2
         + u8::from(settings)
         + u8::from(rail.is_some())
         + u8::from(existing_count > 0)
@@ -108,6 +108,7 @@ pub(super) fn actions(model: &AppModel, window: &Window, cx: &mut Context<AppMod
             bar.child(super::project_layouts::button(model, cx))
         })
         .child(model.extension_toolbar(cx))
+        .child(super::overview::button(model, cx))
         .child(super::agent_sessions::button(model, cx))
         .when(settings, |bar| {
             bar.child(super::tab_strip::settings_button(model, cx))

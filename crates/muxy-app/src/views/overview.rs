@@ -24,6 +24,24 @@ const AGENT_HUE_SHIFT: f32 = -0.12;
 const ACTIVE_WITHIN_SECONDS: u64 = 120;
 const MAX_TILES: usize = 5;
 
+pub(crate) fn button(model: &AppModel, cx: &mut Context<AppModel>) -> AnyElement {
+    let name = tr!("Show Overview");
+    let tooltip = model.tooltip(name.clone(), muxy_core::shortcuts::ShortcutId::ShowOverview);
+    super::titlebar::icon_button(
+        "show-overview",
+        muxy_ui::icon::Icon::Dashboard,
+        tooltip,
+        model,
+    )
+    .aria_label(name)
+    .debug_selector(|| "show-overview-button".into())
+    .on_click(cx.listener(|model, _, _, cx| {
+        cx.stop_propagation();
+        model.open_overview(cx);
+    }))
+    .into_any_element()
+}
+
 pub(crate) fn render(id: PaneId, model: &AppModel, cx: &Context<AppModel>) -> AnyElement {
     let theme = &model.theme;
     let m = model.metrics;
@@ -168,6 +186,10 @@ fn report_body(digest: &Digest, model: &AppModel, cx: &Context<AppModel>) -> Any
                     column.child(project_chips(&projects, model))
                 })
                 .child(trends(summary, &period.previous, range, theme, m)),
+        )
+        .when_some(
+            super::plan_usage::overview_cards(model, cx),
+            |body, plans| body.child(rule(theme)).child(plans),
         )
         .child(rule(theme))
         .child(commits(digest, summary, range, theme, m))

@@ -50,7 +50,6 @@ pub(crate) fn section(model: &AppModel, cx: &Context<AppModel>) -> Option<AnyEle
 fn header(model: &AppModel, cx: &Context<AppModel>) -> AnyElement {
     let theme = &model.theme;
     let m = model.metrics;
-    let label = tr!("Refresh Claude plans");
     div()
         .flex()
         .items_center()
@@ -63,23 +62,133 @@ fn header(model: &AppModel, cx: &Context<AppModel>) -> AnyElement {
                 .text_color(theme.fg_muted)
                 .child(tr!("Claude plans")),
         )
+        .child(refresh_button("sidebar-plan-usage-refresh", model, cx))
+        .into_any_element()
+}
+
+fn refresh_button(id: &'static str, model: &AppModel, cx: &Context<AppModel>) -> AnyElement {
+    let theme = &model.theme;
+    let m = model.metrics;
+    div()
+        .id(id)
+        .role(Role::Button)
+        .aria_label(tr!("Refresh Claude plans"))
+        .flex()
+        .items_center()
+        .justify_center()
+        .size(m.scaled(22.0))
+        .rounded(m.radius_sm())
+        .cursor_pointer()
+        .hover(|style| style.bg(theme.hover))
+        .when(model.plan_usage.loading(), |button| button.opacity(0.4))
+        .button_interaction(cx.listener(|model, _: &ClickEvent, _, cx| {
+            model.refresh_plan_usage(cx);
+        }))
+        .child(IconGlyph::new(Icon::Refresh, m.icon_sm(), theme.fg_muted))
+        .into_any_element()
+}
+
+pub(crate) fn overview_cards(model: &AppModel, cx: &Context<AppModel>) -> Option<AnyElement> {
+    let usage = &model.plan_usage;
+    if usage.readings.is_empty() {
+        return None;
+    }
+    let m = model.metrics;
+    let roomiest = usage.roomiest();
+    Some(
+        div()
+            .flex()
+            .flex_col()
+            .gap(m.spacing7())
+            .child(
+                div()
+                    .flex()
+                    .items_center()
+                    .justify_between()
+                    .gap(m.spacing6())
+                    .child(
+                        div()
+                            .text_size(m.font_headline())
+                            .font_weight(FontWeight::SEMIBOLD)
+                            .child(tr!("Claude plans")),
+                    )
+                    .child(refresh_button("overview-plan-usage-refresh", model, cx)),
+            )
+            .child(div().flex().flex_wrap().gap(m.spacing6()).children(
+                usage.readings.iter().enumerate().map(|(index, reading)| {
+                    card(index, reading, roomiest == Some(index), model, cx)
+                }),
+            ))
+            .into_any_element(),
+    )
+}
+
+fn card(
+    index: usize,
+    reading: &Reading,
+    roomiest: bool,
+    model: &AppModel,
+    cx: &Context<AppModel>,
+) -> AnyElement {
+    let theme = &model.theme;
+    let m = model.metrics;
+    let name = reading.account.name.clone();
+    div()
+        .id(SharedString::from(format!("overview-plan-{index}")))
+        .role(Role::Button)
+        .aria_label(tr!("Start %@ in a new tab", &name))
+        .flex_1()
+        .min_w(m.scaled(280.0))
+        .flex()
+        .flex_col()
+        .gap(m.spacing5())
+        .p(m.spacing6())
+        .rounded(m.radius_lg())
+        .border_1()
+        .border_color(if roomiest {
+            theme.accent.opacity(0.45)
+        } else {
+            theme.fg_alpha(0.08)
+        })
+        .bg(theme.fg_alpha(0.03))
+        .cursor_pointer()
+        .hover(|style| style.bg(theme.hover))
+        .button_interaction(cx.listener(move |model, _: &ClickEvent, _, cx| {
+            model.start_plan_account(index, cx);
+        }))
         .child(
             div()
-                .id("sidebar-plan-usage-refresh")
-                .role(Role::Button)
-                .aria_label(label)
                 .flex()
                 .items_center()
-                .justify_center()
-                .size(m.scaled(20.0))
-                .rounded(m.radius_sm())
-                .cursor_pointer()
-                .hover(|style| style.bg(theme.hover))
-                .when(model.plan_usage.loading(), |button| button.opacity(0.4))
-                .button_interaction(cx.listener(|model, _: &ClickEvent, _, cx| {
-                    model.refresh_plan_usage(cx);
-                }))
-                .child(IconGlyph::new(Icon::Refresh, m.icon_sm(), theme.fg_muted)),
+                .gap(m.spacing3())
+                .text_size(m.font_body())
+                .child(div().font_weight(FontWeight::SEMIBOLD).child(name.clone()))
+                .children(
+                    reading
+                        .plan
+                        .clone()
+                        .map(|plan| div().text_color(theme.fg_dim).child(plan)),
+                )
+                .child(div().flex_1())
+                .when(roomiest, |line| {
+                    line.child(
+                        div()
+                            .px(m.spacing3())
+                            .py(gpui::px(1.0))
+                            .rounded_full()
+                            .text_size(m.font_caption())
+                            .bg(theme.accent_soft)
+                            .text_color(theme.accent)
+                            .child(tr!("most room")),
+                    )
+                }),
+        )
+        .child(body(reading, theme, m))
+        .child(
+            div()
+                .text_size(m.font_footnote())
+                .text_color(theme.fg_muted)
+                .child(tr!("Start %@ →", &name)),
         )
         .into_any_element()
 }
