@@ -29,11 +29,12 @@ desktop app:
   usage; it never renews a login, so an expired one waits until you run Claude
   with that account again. The usage address is not a documented API and may
   change.
-- **Synced with Muxy.** Projects and workspaces you add or remove in Muxy on
-  this computer follow into Pane within a few seconds. Workspaces match by
-  name. Projects with open tabs in Pane are never removed, and projects added
-  only in Pane stay. Turn it off in **Settings → General → Sync projects from
-  Muxy**. Changes made in Pane don't go back to Muxy.
+- **Synced with Muxy.** Projects you add or remove in Pane or in Muxy on this
+  computer follow to the other app within a few seconds; Pane talks to Muxy's
+  server for its side. A project with open terminals on either side is never
+  removed. Muxy's workspaces follow into Pane by name, but workspace changes
+  made in Pane stay in Pane, since Muxy keeps workspaces inside its app. Turn
+  it off in **Settings → General → Sync projects with Muxy**.
 - **Sidebar size.** **Settings → Appearance → Sidebar size** scales project
   and tab rows in the wide sidebar without changing the rest of the app.
 - **Its own app.** Pane has its own name, icon, bundle identifier

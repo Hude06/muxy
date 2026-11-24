@@ -299,9 +299,9 @@ pub(super) const SETTINGS: &[Setting] = &[
     },
     Setting {
         id: "sync-muxy",
-        label: tr_key!("Sync projects from Muxy"),
+        label: tr_key!("Sync projects with Muxy"),
         description: tr_key!(
-            "Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay."
+            "Projects added or removed in Pane or Muxy on this computer follow to the other app. Muxy's workspaces follow into Pane. A project with open terminals on either side is never removed."
         ),
         category: Category::General,
         section: tr_key!("Projects"),

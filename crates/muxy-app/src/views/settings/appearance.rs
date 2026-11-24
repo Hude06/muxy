@@ -129,7 +129,7 @@ pub(super) fn rows(
         ),
         (
             "sync-muxy",
-            tr_key!("Sync projects from Muxy"),
+            tr_key!("Sync projects with Muxy"),
             pane.snapshot.settings.projects.sync_from_muxy,
             Change::SyncFromMuxy(!pane.snapshot.settings.projects.sync_from_muxy),
         ),

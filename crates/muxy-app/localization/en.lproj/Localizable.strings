@@ -157,7 +157,6 @@
 "Add a package-lock.json. Run npm install to make one." = "Add a package-lock.json. Run npm install to make one.";
 "Add a project" = "Add a project";
 "Add a project and the extensions most people start with." = "Add a project and the extensions most people start with.";
-"Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay." = "Add and remove projects and workspaces to match Muxy on this computer. Projects with open tabs are never removed, and projects you add only in Pane stay.";
 "Add at least one marketplace.screenshots entry (PNG, 16:10 or 16:9)." = "Add at least one marketplace.screenshots entry (PNG, 16:10 or 16:9).";
 "Add space between terminal lines using pixels or a percentage, such as 10%%." = "Add space between terminal lines using pixels or a percentage, such as 10%%.";
 "Add the essentials" = "Add the essentials";
@@ -1536,6 +1535,7 @@
 "Project folder is missing" = "Project folder is missing";
 "Project is unavailable" = "Project is unavailable";
 "Projects" = "Projects";
+"Projects added or removed in Pane or Muxy on this computer follow to the other app. Muxy's workspaces follow into Pane. A project with open terminals on either side is never removed." = "Projects added or removed in Pane or Muxy on this computer follow to the other app. Muxy's workspaces follow into Pane. A project with open terminals on either side is never removed.";
 "Proxy" = "Proxy";
 "Proxy removed" = "Proxy removed";
 "Proxy saved" = "Proxy saved";
@@ -1959,7 +1959,7 @@
 "Switch to a branch before committing" = "Switch to a branch before committing";
 "Switch to a branch before creating a pull request" = "Switch to a branch before creating a pull request";
 "Switched to %@ and brought it up to date." = "Switched to %@ and brought it up to date.";
-"Sync projects from Muxy" = "Sync projects from Muxy";
+"Sync projects with Muxy" = "Sync projects with Muxy";
 "Tab %lld" = "Tab %lld";
 "Tab Focused" = "Tab Focused";
 "Tab closed; server cleanup is pending: %@" = "Tab closed; server cleanup is pending: %@";
